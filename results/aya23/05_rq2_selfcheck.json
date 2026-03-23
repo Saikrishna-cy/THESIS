@@ -1,0 +1,2213 @@
+[
+  {
+    "interview_id": "a2308d77-dbda-4b3c-8e41-21f1cf7b2f8f",
+    "language": "nl",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said, \"Hallo,\" to initiate the conversation. Additionally, they mentioned, \"Als je wat extra tijd nodig hebt om na te denken, laat het me gewoon weten, dan pauzeer ik even\" (which translates to \"Let me know if you need some time to think, I'll just pause for a moment\") and \"Ik zal af en toe wat vervolgvragen stellen\" (which means \"I will ask follow-up questions from time to time\").",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.19449901580810547,
+      0.20207375288009644
+    ],
+    "avg_hallucination_score": 0.1983,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a2308d77-dbda-4b3c-8e41-21f1cf7b2f8f",
+    "language": "nl",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided interview transcript, the participant discussed the following topics:\n\n1. **Self-introduction**: The participant introduced themselves as a \"digitale onderzoeker\" (digital researcher) who is learning how to conduct good conversations with people.\n2. **Apology for potential interruptions**: They apologized for taking a short pause or accidentally interrupting the Agent, and asked for extra time if needed to think.\n3. **Website content**: The participant mentioned having seen a part of a website that provides information about losing or changing jobs.\n4. **First impression of website content**: They were asked to share their first impression of the website section regarding job loss or change.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.2105412483215332,
+      0.199623703956604,
+      0.23900079727172852,
+      0.1885703206062317,
+      0.19309628009796143
+    ],
+    "avg_hallucination_score": 0.2062,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a2308d77-dbda-4b3c-8e41-21f1cf7b2f8f",
+    "language": "nl",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In this interview, the participant, identified as a digital researcher named Convo, discusses their experience with learning how to conduct effective conversations with people. The key points are:\n\n1. **Learning Curve**: Convo expresses that they are still learning how to have good conversations and apologizes for any interruptions or pauses needed for thought.\n2. **Communication Style**: They acknowledge the need for extra time to think and request pauses if required.\n3. **Research Focus**: Convo mentions having reviewed a section of a website related to losing or changing jobs.\n4. **Initial Impression**: When asked about their first impression of the website content, Convo is prompted to share their thoughts but does not provide a direct response; instead, they express their intention to reflect and potentially ask follow-up questions later.\n\nThe agent offers to provide additional time and encourages Convo to ask clarifying questions throughout the conversation.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.22289276123046875,
+      0.33328235149383545,
+      0.23099803924560547,
+      0.24901020526885986,
+      0.23324018716812134,
+      0.21284037828445435,
+      0.2589987516403198
+    ],
+    "avg_hallucination_score": 0.2488,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a2308d77-dbda-4b3c-8e41-21f1cf7b2f8f",
+    "language": "nl",
+    "query": "What was discussed after the participant said 'Als je wat extra tijd nodig hebt om na te denken,'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "The transcript does not provide any details about what was discussed after the participant expressed the need for extra time to think. The statement \"laat het me gewoon weten, dan pauzeer ik even\" from the Agent acknowledges the request but does not record the subsequent conversation. \n\nTherefore, this information **is not available in the transcript**.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.23207855224609375,
+      0.21527183055877686,
+      0.29732179641723633
+    ],
+    "avg_hallucination_score": 0.2482,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a2308d77-dbda-4b3c-8e41-21f1cf7b2f8f",
+    "language": "nl",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided transcript, the participant expresses a **polite and cautious** sentiment. They demonstrate **humility** by apologizing for potential interruptions (\"vergeef me als ik je per ongeluk onderbreek\") and being mindful of the agent's time (\"laat het me gewoon weten... als je extra tijd nodig hebt\"). \n\nThey also show **openness to learning** by stating they're still learning how to conduct good conversations (\"Ik leer nog hoe ik goede gesprekken met mensen kan voeren\"). This suggests a willingness to engage and participate thoughtfully.\n\nThere's also a hint of **self-awareness** as they acknowledge their need for guidance (\"ik moet leren\"). Overall, the tone is respectful, humble, and eager to learn.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.22915589809417725,
+      0.1921045184135437,
+      0.33115607500076294,
+      0.21072006225585938,
+      0.27855032682418823,
+      0.22856098413467407,
+      0.2673654556274414
+    ],
+    "avg_hallucination_score": 0.2482,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a2308d77-dbda-4b3c-8e41-21f1cf7b2f8f",
+    "language": "nl",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided transcript, the last topic discussed was **the participant's experience with losing or changing jobs**. The agent asks, \"Wat was je eerste indruk daarvan?\" (What was your first impression of that?), referring to the section of the website about job loss or change. \n\nThe transcript does not indicate any other topics covered after this point.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.13739871978759766,
+      0.1207473874092102,
+      0.2680867910385132
+    ],
+    "avg_hallucination_score": 0.1754,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "2ee9690b-12be-46e8-92c4-5d0399c2ecd6",
+    "language": "nl",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said, \"Hoi,\" which means \"Hello\" in Dutch. They then introduced the topic of the interview by stating, \"Ik ga je een aantal vragen stellen en misschien af en toe een vervolgvraag\" which translates to \"I'm going to ask you some questions and maybe an additional one from time to time.\" \n\nLater, the Agent asked, \"Je hebt een deel van de website gezien met informatie over het verliezen... Of veranderen van je baan,\" which roughly translates to \"You've seen a part of the website with information about... losing or changing jobs.\"",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.18528258800506592,
+      0.1452564001083374,
+      0.22482138872146606,
+      0.3036147952079773
+    ],
+    "avg_hallucination_score": 0.2147,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "2ee9690b-12be-46e8-92c4-5d0399c2ecd6",
+    "language": "nl",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided interview transcript, the participant discussed the following topics:\n\n1. **Introduction**: The participant introduced themselves as a digital researcher who is learning how to conduct good conversations with people. They expressed apologies for any pauses or accidental interruptions.\n\n2. **Communication Skills**: They mentioned being in a phase of learning to have better conversations and acknowledged the need for time to think if the agent needed it.\n\n3. **Website Content**: The participant was shown a part of a website that provides information about losing or changing jobs.\n\n4. **First Impressions**: The agent asked about their initial reaction to the content related to job loss or change, but the participant's response focused more on their communication skills and learning process rather than providing a detailed impression of the website content.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.20480382442474365,
+      0.161834716796875,
+      0.2605486512184143,
+      0.21321046352386475,
+      0.1825917363166809,
+      0.17642420530319214
+    ],
+    "avg_hallucination_score": 0.1999,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "2ee9690b-12be-46e8-92c4-5d0399c2ecd6",
+    "language": "nl",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In this interview, the participant, Kongvo, introduces themselves as a digital researcher who is still learning how to conduct effective conversations. They express their willingness to take breaks if needed and to allow the interviewer time to think. \n\nThe main topics covered include:\n\n1. **Kongvo's Role:** Kongvo identifies themselves as a digital researcher focusing on learning conversational skills.\n2. **Learning Curve:** They acknowledge and apologize for potential pauses or accidental interruptions during the conversation due to their ongoing learning process.\n3. **Understanding of Website Content:** The agent mentions showing Kongvo information about losing or changing jobs, and asks for their initial impression of it. \n\nThe focus seems to be on Kongvo's development as a conversational partner and their reaction to a specific section of a website related to career transitions.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.18422043323516846,
+      0.2445000410079956,
+      0.3409843444824219,
+      0.21747958660125732,
+      0.21929854154586792,
+      0.2046634554862976,
+      0.22596681118011475
+    ],
+    "avg_hallucination_score": 0.2339,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "2ee9690b-12be-46e8-92c4-5d0399c2ecd6",
+    "language": "nl",
+    "query": "What was discussed after the participant said 'Mijn naam is Kongvo en ik ben een digitale onderzoeker.'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "The transcript does not provide any details about what was discussed *after* the participant introduced themselves as Kongvo, a digital researcher. The conversation begins with the Agent asking about their initial impression of the website content regarding job loss or career change, following a brief introduction from the Participant. \n\nThere is no further context or discussion initiated after this introduction.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.24671638011932373,
+      0.20348364114761353,
+      0.29453396797180176
+    ],
+    "avg_hallucination_score": 0.2482,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "2ee9690b-12be-46e8-92c4-5d0399c2ecd6",
+    "language": "nl",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided transcript, the participant's sentiment appears to be **polite, apologetic, and eager to learn**. \n\nHere's why:\n\n* **\"Vergeef me als er een pauze valt. Of als ik je per ongeluk onderbreek.\"**  This statement shows humility and awareness of their own learning curve.\n* **\"Of als ik je even tijd nodig heb om na te denken, zeg het gerust, dan hou ik een pauze.\"** Demonstrates open-mindedness and willingness to pause for reflection.\n* **Throughout the conversation**, the participant uses polite language (\"Hoi\", \"Om te beginnen\") and expresses appreciation for the Agent's guidance (\"dank je\").\n\nWhile there's no explicit expression of positive or negative emotion, these nuances suggest a generally **positive and collaborative attitude** towards the interview process and their role as a digital researcher. They seem enthusiastic about learning how to conduct good conversations and are respectful of the interaction.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.21335631608963013,
+      0.28539544343948364,
+      0.24572813510894775,
+      0.23668944835662842,
+      0.21343994140625,
+      0.2525743842124939,
+      0.2501004934310913
+    ],
+    "avg_hallucination_score": 0.2425,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "2ee9690b-12be-46e8-92c4-5d0399c2ecd6",
+    "language": "nl",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the end of the interview was **the participant's experience with losing or changing jobs**, as indicated by the Agent's statement: \"Je hebt een deel van de website gezien met informatie over het verliezen... Of veranderen van je baan.\" (You've seen a part of the website with information about... Losing... Or changing your job.)",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.15921145677566528,
+      0.25298047065734863,
+      0.2925049066543579
+    ],
+    "avg_hallucination_score": 0.2349,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a3bcedb2-b7cf-4c20-a76e-b8e3141e0909",
+    "language": "en",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said, \"Hi, my name is Convo, and I'm a digital researcher. I'm still learning how to have good conversations with humans. If you ever need some extra time to think, just tell me to pause. I may ask some follow-up questions as we go along.\"",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.25059765577316284,
+      0.2368021011352539,
+      0.27074503898620605,
+      0.2429254651069641
+    ],
+    "avg_hallucination_score": 0.2503,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a3bcedb2-b7cf-4c20-a76e-b8e3141e0909",
+    "language": "en",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided interview transcript, the participant discussed the following topics:\n\n1. **Anonymous Participant Feature**: The participant expressed positive sentiments towards the anonymous participant feature, highlighting the sense of privacy and comfort it provides. They mentioned liking the ability to respond anonymously and noted that it encouraged them to be more honest with their responses.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.22251921892166138,
+      0.16317909955978394,
+      0.2005099654197693
+    ],
+    "avg_hallucination_score": 0.1954,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a3bcedb2-b7cf-4c20-a76e-b8e3141e0909",
+    "language": "en",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided interview transcript, here are the main points:\n\n1. **Positive View of Anonymous Participation:** The participant expresses a positive opinion about the anonymous participation feature, finding it \"great\" primarily due to the sense of privacy it offers.\n\n2. **Value of Anonymity:** They highlight that the ability to respond anonymously encourages honesty. The participant feels more comfortable and open when responding anonymously, suggesting that the feature allows them to express their true thoughts without fear of identification or judgment. \n\n3. **Impact of Anonymity:** The discussion implies that anonymity leads to more candid responses from the participant, indicating that they were able to provide answers that might not have been as truthful if their identity was known.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.2843986749649048,
+      0.16920459270477295,
+      0.18628203868865967,
+      0.1757880449295044,
+      0.19615107774734497
+    ],
+    "avg_hallucination_score": 0.2024,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a3bcedb2-b7cf-4c20-a76e-b8e3141e0909",
+    "language": "en",
+    "query": "What was discussed after the participant said 'I like being able to respond anonymously.'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "After the participant stated, \"I like being able to respond anonymously,\" the following discussion occurred:\n\n**Agent:** *Could you tell me if being anonymous changed how you answered or made you feel more comfortable?*\n\n**Participant:** *Yes, I could be a lot more honest with my responses.*\n\n**Agent:** *That makes perfect sense. It sounds like the anonymity really encouraged more openness.*\n\n**Agent:** *Were you more honest because it's anonymized?*\n\nThe participant did not provide further elaboration on why they felt more honest, but the agent acknowledges and agrees with the participant's statement, implying that the anonymity feature fostered an environment that allowed for increased candor.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.13969147205352783,
+      0.17331409454345703
+    ],
+    "avg_hallucination_score": 0.1565,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a3bcedb2-b7cf-4c20-a76e-b8e3141e0909",
+    "language": "en",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided transcript, the overall sentiment or tone of the participant can be described as positive and appreciative. Here are some key points that support this conclusion:\n\n1. **Positive Assessment**: The participant consistently expresses positive views about the anonymous participant feature, describing it as \"pretty great\" and \"really nice.\"\n2. **Gratitude**: They show gratitude towards the agent for asking follow-up questions and give thoughtful responses.\n3. **Comfortable and Open**: The participant explicitly states that they felt more comfortable and were able to be \"a lot more honest\" due to the anonymity.\n\nThese elements collectively suggest a positive and open tone throughout the interview.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.19985169172286987,
+      0.3189903497695923,
+      0.182886004447937,
+      0.24307876825332642,
+      0.19605004787445068,
+      0.2702394723892212
+    ],
+    "avg_hallucination_score": 0.2352,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a3bcedb2-b7cf-4c20-a76e-b8e3141e0909",
+    "language": "en",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the interview ended was whether being anonymous affected the Participant's honesty and openness. Specifically, the Agent asked, \"Were you more honest because it's anonymized?\", to which the Participant responded affirmatively, stating they could be \"a lot more honest\" while participating anonymously.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.13777226209640503,
+      0.195107102394104
+    ],
+    "avg_hallucination_score": 0.1664,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "4ddd401e-d59c-48d9-9aef-3dd4960a32dd",
+    "language": "en",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said, \"Hi, my name is Convo, and I'm a digital researcher. I'm still learning how to have good conversations with humans. If you ever need some extra time to think, just tell me to pause.\"",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.16918647289276123,
+      0.2097872495651245,
+      0.21633005142211914
+    ],
+    "avg_hallucination_score": 0.1984,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "4ddd401e-d59c-48d9-9aef-3dd4960a32dd",
+    "language": "en",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided interview transcript, the participant discussed the following topics:\n\n1. **Perception of the Anonymous Participation Feature:** The participant expressed their positive view of the anonymous participation feature, highlighting the value of protecting their privacy (Participant: \"I think it's excellent...it just really good to be able to protect my privacy.\").\n\n2. **Benefits of Anonymity:** They explained that anonymity encourages honesty (Participant: \"it just allows me to be a lot more honest...I'll be able to provide better feedback\").\n\n3. **Impact of Anonymity on Feedback Quality:** The participant suggested that their increased honesty due to anonymity will lead to better, more constructive feedback for the company they're providing input to (Participant: \"I think that means that I'll be able to provide better feedback for the company I'm providing feedback for.\"). \n\n4. **General Satisfaction with the Interview Process:** Towards the end, the agent thanked the participant for their feedback and appreciation for the interview process (Agent: \"Thank you so much for sharing your thoughts so far.\").",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.22886818647384644,
+      0.18752223253250122,
+      0.21113651990890503,
+      0.162145733833313,
+      0.22567880153656006
+    ],
+    "avg_hallucination_score": 0.2031,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "4ddd401e-d59c-48d9-9aef-3dd4960a32dd",
+    "language": "en",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In this interview, the participant discusses their experience with an anonymous participation feature, expressing strong approval. Here are the key points summarized:\n\n1. **Privacy Value**: The participant appreciates the ability to protect their privacy while participating, finding it \"excellent\" and \"reassuring.\" They believe this layer of anonymity encourages them to be more open.\n\n2. **Honesty and Feedback Quality**: Anonymity leads the participant to be more honest in their responses, stating they can thus provide \"better feedback.\" This suggests that without the fear of identification, participants feel freer to offer candid and potentially constructive criticism.\n\n3. **Open Communication**: The participant confirms that anonymity does indeed prompt greater openness, which could lead to more insightful and comprehensive feedback for the organization receiving the input.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.20729267597198486,
+      0.3114663362503052,
+      0.1696852445602417,
+      0.17023718357086182,
+      0.18303143978118896
+    ],
+    "avg_hallucination_score": 0.2083,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "4ddd401e-d59c-48d9-9aef-3dd4960a32dd",
+    "language": "en",
+    "query": "What was discussed after the participant said 'I was.'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "After the participant said \"Yes, I was,\" the agent responded:\n\n\"Thanks for confirming that.\"\n\nThe conversation then transitioned back to the agent expressing appreciation for the participant's feedback and wrapping up the interview. The participant agreed, saying \"No problem,\" and the agent thanked them again before concluding the interview.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.14397907257080078,
+      0.21974998712539673
+    ],
+    "avg_hallucination_score": 0.1819,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "4ddd401e-d59c-48d9-9aef-3dd4960a32dd",
+    "language": "en",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided transcript, the overall sentiment or tone of the participant appears to be positive and cooperative. Here are several indicators:\n\n1. **Positive Assessment**: The participant consistently expresses satisfaction with the Anonymous Participant feature, describing it as \"excellent\" (Participant: \"I think it's excellent\").\n2. **Appreciation for Privacy**: They value the privacy aspect, stating, \"I think it's just really good to be able to protect my privacy\" (Participant).\n3. **Honesty and Open-mindedness**: The participant explicitly mentions that anonymity encourages them to be more honest, saying, \"I think that means that I'll be able to provide better feedback... [and] I was\" (Participant).\n4. **Cooperative and Helpful**: Throughout the interview, the participant responds thoughtfully and provides detailed answers, indicating a willingness to participate and contribute.\n5. **Gratitude**: They express gratitude towards the agent for their role in the conversation, saying, \"No problem\" (Participant) and \"Thank you for sharing your thoughts so far\" (Agent).\n\nIn summary, the participant's language and responses suggest a positive and collaborative attitude throughout the interview.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.20313400030136108,
+      0.3051108121871948,
+      0.20251452922821045,
+      0.2515867352485657,
+      0.21809828281402588,
+      0.3576355576515198,
+      0.19502103328704834,
+      0.22513407468795776,
+      0.21499353647232056
+    ],
+    "avg_hallucination_score": 0.2415,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "4ddd401e-d59c-48d9-9aef-3dd4960a32dd",
+    "language": "en",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the interview ended was **thanking the Participant for their time and experiences**. The Agent expressed gratitude for the Participant's feedback and then concluded the interview by thanking them again before ending the session. \n\nSpecific lines from the transcript include:\n\n* \"That wraps up the main questions I had for you today.\" \n* \"Thank you for sharing your experiences with me.\"\n* \"You may now click the end interview button. Have a great day.\"\n* \"This concludes our interview. Thank you for your time.\"",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.14174175262451172,
+      0.16736775636672974,
+      0.23929697275161743,
+      0.29283541440963745,
+      0.33690524101257324
+    ],
+    "avg_hallucination_score": 0.2356,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "bc5f4f82-c514-47df-99f5-66840fe21869",
+    "language": "en",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said, \"Cool, looks like it's working. Thanks for spending a bit of time with me today, Alex. Basically, yeah, I think we already chatted a little bit before, so you have a bit of the preamble of what I\u2019m working on.\" \n\nHe then expressed his intention to hear about the participant's (Alex's) experiences with similar products and their uses.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.18916815519332886,
+      0.23690789937973022,
+      0.12888562679290771
+    ],
+    "avg_hallucination_score": 0.185,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "bc5f4f82-c514-47df-99f5-66840fe21869",
+    "language": "en",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided transcript, the participant discussed the following topics:\n\n1. **Use Cases for Collaboration Tools**: The participant described their typical use of collaboration tools for team discussions, project tracking, and brainstorming. They also mentioned using them for sharing updates with both internal teams and external stakeholders.\n\n2. **Features of V3 of Convo**: They highlighted several valued features of V3, including:\n   - Intuitive commenting system\n   - Clean User Interface (UI)\n   - Fast loading times\n\n3. **Desired Improvements**: The participant suggested two main areas for improvement:\n   - Better integrations with other platforms (e.g., Notion, Asana) to automate syncing of calendar and task management.\n   - Enhancements to the mobile experience, specifically improving navigation and button size/placement.\n\n4. **General Workflow and Feedback**: They expressed that the current tool meets their needs mostly, but the suggested improvements would significantly enhance their daily workflow. They also agreed to future conversations to provide further insights.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.29136860370635986,
+      0.1970847249031067,
+      0.26831579208374023,
+      0.21637123823165894,
+      0.20233231782913208,
+      0.26315224170684814,
+      0.23080211877822876,
+      0.29969674348831177
+    ],
+    "avg_hallucination_score": 0.2461,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "bc5f4f82-c514-47df-99f5-66840fe21869",
+    "language": "en",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In this interview, the participant discusses their experiences and feedback on a collaboration tool, specifically focusing on **V3 of Convo**. \n\nHere are the main points:\n\n**Current Usage:**\n\n* Primarily uses collaboration tools for internal team communication, project tracking, and brainstorming. \n* Occasionally shares updates with clients and external partners, seeking tools that balance detail with ease of understanding.\n\n**Valuable Features:**\n\n* **Intuitive commenting system:** Participat finds it superior to other tools they've used.\n* **Clean User Interface (UI):** Appreciates its speed and responsiveness, contrasting with potentially slower alternatives.\n* **Quick Task List Creation:**  Values the ability to create tasks directly within conversation threads, streamlining workflows.\n\n**Areas for Improvement:**\n\n* **Better Integrations:** Cites the need for seamless syncing with platforms like Notion and Asana for improved efficiency.\n* **Enhanced Mobile Experience:** Suggests optimizing the mobile interface by improving button size and navigation, as it currently feels less user-friendly than the desktop version.\n\n**Overall Impression:** The participant expresses overall satisfaction with V3 of Convo but highlights these two key areas where further development could significantly enhance their experience.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.2125784158706665,
+      0.20047271251678467,
+      0.2530323266983032,
+      0.2325391173362732,
+      0.2325240969657898,
+      0.22217410802841187,
+      0.21496927738189697,
+      0.21434396505355835,
+      0.2401713728904724
+    ],
+    "avg_hallucination_score": 0.2248,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "bc5f4f82-c514-47df-99f5-66840fe21869",
+    "language": "en",
+    "query": "What was discussed after the participant said 'Yeah, the ability to create quick task lists directly within'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "After the participant said, \"Yeah, the ability to create quick task lists directly within the conversation thread is something I\u2019ve found really useful. It reduces the need to switch back and forth between different tools,\" the following was discussed:\n\nThe **agent** followed up by asking, \"Okay, makes sense.\"\n\nThen, the **agent** continued, \"**Anything else that stands out?**\" \n\nThe **participant** responded by suggesting an improvement area: **\"One thing that would be really helpful is better integrations with other platforms. Right now, I have to manually update my calendar and task manager after discussions. If there were some sort of automated sync with tools like Notion or Asana, that would be a game-changer.\"**\n\nThe conversation then moved on to discussing **mobile optimization** as another suggested improvement by the participant.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.22918379306793213,
+      0.21164828538894653,
+      0.2672206163406372,
+      0.21548569202423096
+    ],
+    "avg_hallucination_score": 0.2309,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "bc5f4f82-c514-47df-99f5-66840fe21869",
+    "language": "en",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "The participant expressed an overall positive sentiment throughout the interview. They demonstrated enthusiasm and satisfaction with the product, V3 of Convo, highlighting several features they found valuable. The language used indicated approval, such as \"that\u2019s a great question,\" \"I really like,\" \"super clean,\" and \"a game-changer.\" They also offered constructive criticism, suggesting improvements, but did so in a polite and supportive manner, emphasizing their willingness to help by saying, \"no problem\" multiple times. Their tone remained consistent, reflecting engagement and interest in the discussion.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.2321850061416626,
+      0.22710877656936646,
+      0.2556384801864624,
+      0.25073033571243286
+    ],
+    "avg_hallucination_score": 0.2414,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "bc5f4f82-c514-47df-99f5-66840fe21869",
+    "language": "en",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the interview ended was **improvements to the product**, specifically:\n\n* **Mobile optimization:** The participant mentioned that the mobile experience could be improved by making navigation easier and buttons more accessible. \n* **Better integrations:** They suggested integrating with platforms like Notion or Asana to automatically sync conversations with calendars and task managers. \n\n\nThe participant concluded by expressing willingness to provide further feedback in the future.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.1185232400894165,
+      0.16471737623214722,
+      0.2568477392196655
+    ],
+    "avg_hallucination_score": 0.18,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "8d63a1a0-2479-4113-88b0-02fabc09ac11",
+    "language": "en",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) began by asking the participant to introduce themselves, stating: \"Please introduce yourself. Please tell me your name and age.\"",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.18160313367843628,
+      0.25352632999420166
+    ],
+    "avg_hallucination_score": 0.2176,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "8d63a1a0-2479-4113-88b0-02fabc09ac11",
+    "language": "en",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided interview transcript, the participant discussed the following topics:\n\n1. **Familiarity and Sources of Information**: The participant mentioned learning about the new Xbox mobile phone from two online communities\u2014Naver's Game Community cafe and Switch Korea.\n\n2. **Design and Size Perception**: They expressed that the Xbox portable game machine has a \"masculine\" design and is heavier than the Nintendo Switch. They also found it too large to fit comfortably in a bag, suggesting it might be less suitable for women.\n\n3. **Previous Experience with Portable Devices**: The participant shared their positive experience with the Nintendo Switch, praising its design, versatility, and accompanying accessories. They use it both at home as a console and carry it in a bag when they go out.\n\n4. **Attractiveness of the New Xbox Mobile Console**: From a woman's perspective, the participant does not find the new Xbox mobile game console appealing. They specifically mentioned lacking \"cute\" and \"charming\" design elements.\n\n5. **Purchase Consideration**: While initially not interested in purchasing the new Xbox mobile console, they could see themselves considering it if there are exclusive titles they cannot access elsewhere. However, they currently do not feel a strong need to buy it.\n\n6. **Use Cases**: The participant envisions using the device during situations involving long-distance travel, such as at the airport, on business trips, or while waiting for appointments.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.26632577180862427,
+      0.1856389045715332,
+      0.2185835838317871,
+      0.2837662696838379,
+      0.19465291500091553,
+      0.31616759300231934,
+      0.20241832733154297,
+      0.2936505079269409,
+      0.2096746563911438,
+      0.28955078125,
+      0.2201021909713745
+    ],
+    "avg_hallucination_score": 0.2437,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "8d63a1a0-2479-4113-88b0-02fabc09ac11",
+    "language": "en",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In this interview, an 89-year-old participant (Jung Hyewon) shares their thoughts on the new Xbox mobile phone or portable game machine. Here are the key points:\n\n1. **Awareness and Exposure**: The participant learned about the new Xbox mobile device from online communities on Naver, specifically the Game Community cafe and Switch Korea.\n\n2. **Design and Size Perception**: They found the design to be masculine and somewhat heavy compared to the Nintendo Switch, which they currently use. They also considered it too large to fit comfortably in a typical woman's bag.\n\n3. **Current Experience with Portable Devices**: Despite mentioning they aren't generally interested in portable devices, the participant expressed satisfaction with their current Nintendo Switch, appreciating its design and accessories. They use it both at home and when traveling.\n\n4. **Attractiveness and Purchase Consideration**: From a female perspective, the participant doesn't find the Xbox mobile game console particularly appealing. They wouldn't prioritize purchasing it unless there were exclusive titles they couldn't access on other platforms.\n\n5. **Potential Use Cases**: If the Xbox mobile device offered unique or exclusive games, the participant might consider buying it. They would likely use it during long travels, such as at the airport or while on business trips.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.21585005521774292,
+      0.32261335849761963,
+      0.20183420181274414,
+      0.2223789095878601,
+      0.28795015811920166,
+      0.2061138153076172,
+      0.30057376623153687,
+      0.20327794551849365,
+      0.2858182191848755,
+      0.22796761989593506,
+      0.27243560552597046
+    ],
+    "avg_hallucination_score": 0.2497,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "8d63a1a0-2479-4113-88b0-02fabc09ac11",
+    "language": "en",
+    "query": "What was discussed after the participant said 'In that case,'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "After the participant said \"In that case,\" they continued by specifying scenarios where they would potentially use the new Xbox portable game machine if they were to buy it. They mentioned:\n\n- Playing games during long distance travel.\n- Using it while at the airport.\n- Playing during business trips.\n- Playing when they have appointments.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.1748356819152832,
+      0.24995315074920654,
+      0.29719221591949463,
+      0.2848939895629883,
+      0.3077586889266968
+    ],
+    "avg_hallucination_score": 0.2629,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "8d63a1a0-2479-4113-88b0-02fabc09ac11",
+    "language": "en",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided transcript, the participant expresses a mix of sentiments throughout the interview. Initially, they seem **curious** and open to discussing the new Xbox mobile phone, sharing their sources of information and offering initial impressions. They demonstrate **knowledgeability** about gaming consoles, particularly mentioning the Nintendo Switch which they currently use.\n\nHowever, their overall tone shifts towards **cautiously negative** as they evaluate the new Xbox mobile device:\n\n* **Critical:** They find the design \"masculine\" and \"a little heavy,\" suggesting it might not fit their preferences. They also perceive it as too large to carry around easily, comparing it unfavorably to the Nintendo Switch's portability.\n* **Unconvinced:** They express skepticism about the appeal of the Xbox mobile console from a woman's perspective, stating it lacks \"cute and cute taste.\"\n* **Indifferent:** Despite acknowledging potential benefits like access to exclusive Xbox titles, they declare they have no immediate need to purchase the device.\n\nFinally, they **qualify** their interest, indicating they might consider buying it if there were specific Xbox-exclusive titles they couldn't access elsewhere. Their final response suggests a **practical** approach, envisioning use during long travels, such as at the airport or on business trips.\n\nIn conclusion, while initially engaged, the participant ultimately conveys a sense of reserved enthusiasm, highlighting potential design and usability issues and balancing these with practical considerations.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.2745009660720825,
+      0.25805312395095825,
+      0.25829118490219116,
+      0.2255408763885498,
+      0.2875947952270508,
+      0.21050560474395752,
+      0.24554765224456787,
+      0.2577275037765503,
+      0.2725788354873657
+    ],
+    "avg_hallucination_score": 0.2545,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "8d63a1a0-2479-4113-88b0-02fabc09ac11",
+    "language": "en",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the interview ended was **the situations under which the participant would consider using the new Xbox portable game machine**. Specifically, the participant mentioned:\n\n\"In that case, I think I'll play it when I go to the airport, or when I go on a business trip, or when I have an appointment.\"",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.12860548496246338,
+      0.21031242609024048
+    ],
+    "avg_hallucination_score": 0.1695,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "59eaca7d-75c0-4b17-b225-da2cba82e453",
+    "language": "en",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) began the conversation by introducing themselves as Jung Jaewon and asking the participant (also named Jung Jaewon) to introduce themselves briefly, including their name and age. Here's what the Agent said:\n\n\"Hello, I'm Jung Jaewon. Please introduce yourself briefly. Please tell me your name and age.\"",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.17292416095733643,
+      0.2823331952095032,
+      0.3417503237724304,
+      0.297366738319397
+    ],
+    "avg_hallucination_score": 0.2736,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "59eaca7d-75c0-4b17-b225-da2cba82e453",
+    "language": "en",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided interview transcript, the participant discussed the following topics:\n\n1. **Awareness and Discovery of the New Xbox Mobile Device**:\n   - They had no prior knowledge of a new Xbox mobile device before the interview.\n   - Learned about it through the interview process and subsequent searches.\n\n2. **Search Process**:\n   - Searched for the device on Naver and YouTube.\n   - Found detailed information about the device on YouTube.\n   - Compared its features with those of Nintendo Switch and PlayStation Portable (PS Portal).\n\n3. **Initial Impressions**:\n   - Initially not interested in portable gaming devices due to limitations of Nintendo Switch and dependency on a PlayStation main body for PS Portal.\n   - Found the specs of the new Xbox mobile device impressive and versatile.\n\n4. **Comparison with Existing Devices**:\n   - Highlighted the advantage of the Xbox mobile device over PS Portal as it doesn't require a separate main body and supports various game platforms including Windows 10/11 and Steam.\n\n5. **Consideration for Purchase**:\n   - Considered purchasing the new Xbox mobile device due to its versatility and compatibility with multiple gaming platforms.\n\n6. **Usage Scenarios**:\n   - Discussed potential scenarios for using the device, such as while traveling, at home, or lying down in their room for comfortable gaming.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.29029959440231323,
+      0.19894742965698242,
+      0.28710341453552246,
+      0.25803303718566895,
+      0.28991860151290894,
+      0.28107041120529175,
+      0.2294902801513672,
+      0.25969451665878296,
+      0.2153756022453308,
+      0.20413446426391602,
+      0.22331130504608154
+    ],
+    "avg_hallucination_score": 0.2489,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "59eaca7d-75c0-4b17-b225-da2cba82e453",
+    "language": "en",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In this interview, the participant, Jung Jaewon, a 25-year-old individual, discusses their initial lack of awareness about a new Xbox mobile game console. After learning about it during the interview, they express interest due to its versatility and performance. Here are the key points:\n\n1. **Awareness and Learning**: The participant had not seen any advertisements or videos about the new Xbox mobile device before the interview but discovered it through the discussion.\n\n2. **Initial Disinterest in Portable Devices**: They initially stated they weren't very interested in portable gaming consoles like Nintendo Switch and PlayStation Portable due to limitations such as being tied to a main console for PlayStation.\n\n3. **Attractiveness of Xbox Mobile Device**: The participant finds the Xbox mobile device appealing because it doesn't require a separate main console; it's a standalone portable game console. They appreciate that it supports both Xbox and Steam games, allowing them to access a wider range of titles.\n\n4. **Consideration for Purchase**: Based on the features and operating system (Windows 11), the participant considers the Xbox mobile device a worthwhile purchase.\n\n5. **Usage Scenarios**: They envision using the device primarily while traveling or relaxing at home, especially when lying down, for comfortable and unrestricted gaming.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.23831713199615479,
+      0.25801795721054077,
+      0.3390287160873413,
+      0.21249687671661377,
+      0.220592200756073,
+      0.20651042461395264,
+      0.26285994052886963,
+      0.21841275691986084,
+      0.21043109893798828
+    ],
+    "avg_hallucination_score": 0.2407,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "59eaca7d-75c0-4b17-b225-da2cba82e453",
+    "language": "en",
+    "query": "What was discussed after the participant said 'Then you can play a variety of games.'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "After the participant stated, \"Then you can play a variety of games,\" the following discussion occurred:\n\n**Agent:** *I think I got a lot of attention.*\n\n**Participant:** *Do you think it's a product that you can look for or consider buying?*\n\n**Participant:** *What is the reason?*\n\n**Participant:** *I think it's a product that can be considered for purchase.*\n\nThe reasons given for considering purchasing the Xbox mobile device include:\n- It supports Windows 11 and Steam, allowing access to a wide range of games from various platforms.\n- Its portability, which enables gaming without space constraints.\n- The participant's desire to play games comfortably at home, alone, or while traveling.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.12407553195953369,
+      0.29475414752960205,
+      0.2716069221496582
+    ],
+    "avg_hallucination_score": 0.2301,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "59eaca7d-75c0-4b17-b225-da2cba82e453",
+    "language": "en",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based on the transcript, the participant seems to have a generally **positive** sentiment towards the concept of a new Xbox mobile device. Here's how their tone can be inferred from their responses:\n\n1. **Initial Curiosity and Engagement:** They showed interest in learning more about the device during the interview, indicating a willingness to engage (e.g., \"I searched for a portable Xbox device on Naver and on YouTube\").\n\n2. **Positive Impression of Specifications:** They praised the device's specifications, acknowledging its potential as a portable gaming solution (e.g., \"The specifications were very good,\" \"you can play a variety of games\").\n\n3. **Awareness of Limitations of Other Portable Devices:** The participant expressed dissatisfaction with the limitations of existing portable gaming devices like Nintendo Switch and PlayStation Portable (e.g., \"Nintendo Switch is not that versatile,\" \"you need a separate main body like PS\").\n\n4. **Willingness to Consider Purchase:** They explicitly stated that they would consider buying the Xbox mobile device (e.g., \"I think it's a product that can be considered for purchase\").\n\n5. **Practical Use Cases:** They thoughtfully discussed scenarios where they would use the device, such as while traveling or relaxing at home (e.g., \"There's no limitation on space,\" \"I want to play games comfortably\").\n\nOverall, the participant's responses suggest a positive reception to the idea of an Xbox mobile device, highlighting its advantages over competing products and expressing genuine interest in potentially acquiring it.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.22615039348602295,
+      0.32101017236709595,
+      0.21464037895202637,
+      0.2345770001411438,
+      0.22619575262069702,
+      0.23202729225158691,
+      0.24728095531463623,
+      0.23051249980926514
+    ],
+    "avg_hallucination_score": 0.2415,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "59eaca7d-75c0-4b17-b225-da2cba82e453",
+    "language": "en",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the interview ended was **when and in what situations the participant would use the new Xbox mobile device**. \n\nThe participant mentioned:\n\n> \"There's no limitation on space. ... I think that's a good thing. I usually travel. ... in my room, alone. I want to play games comfortably. I want to lie down. ... That's all.\"\n\nThis concluded the discussion about their potential use cases for the product.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.11556816101074219,
+      0.3008228540420532,
+      0.3730089068412781,
+      0.35043013095855713,
+      0.32585227489471436,
+      0.26905733346939087,
+      0.3269195556640625,
+      0.27969038486480713
+    ],
+    "avg_hallucination_score": 0.2927,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "47b83699-0d36-424a-9cea-efaf57334fea",
+    "language": "en",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said, \"Cool, looks like it's working. Thanks for spending a bit of time with me today, Alex. Basically, yeah, I think we already chatted a little bit before, so you have a bit of the preamble of what I\u2019m working on.\" \n\nHe then expressed his intention to hear from the participant (Alex) about their typical use of collaboration tools and their experiences with V3 of Convo.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.17879962921142578,
+      0.2282760739326477,
+      0.1221843957901001
+    ],
+    "avg_hallucination_score": 0.1764,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "47b83699-0d36-424a-9cea-efaf57334fea",
+    "language": "en",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "The participant discussed several topics during the interview, including:\n\n1. **Use Cases for Collaboration Tools**: The participant described their typical use of collaboration tools for team discussions, project tracking, and brainstorming. They emphasized the importance of these tools for both internal and external collaboration, particularly when sharing updates with clients or external partners.\n\n2. **Features of V3 of Convo**: They highlighted the following features as valuable:\n   - Seamless commenting system\n   - Clean and fast User Interface (UI)\n   - Ability to create quick task lists within conversation threads\n\n3. **Areas for Improvement**:\n   - **Integrations**: The participant suggested better integrations with other platforms like Notion or Asana to automate updates across tools.\n   - **Mobile Experience**: They noted that improvements to the mobile interface, such as larger buttons and easier navigation, would enhance their daily workflow.\n\n4. **General Workflow and Feedback**: The participant expressed satisfaction with the current state of the tool but offered constructive criticism focused on integrations and mobile usability. They also agreed to future conversations to provide further insights.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.27647703886032104,
+      0.19646614789962769,
+      0.2559439539909363,
+      0.20646852254867554,
+      0.20230215787887573,
+      0.22148752212524414,
+      0.23092657327651978,
+      0.29180681705474854
+    ],
+    "avg_hallucination_score": 0.2352,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "47b83699-0d36-424a-9cea-efaf57334fea",
+    "language": "en",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In this interview, the participant discusses their experiences and preferences regarding a collaboration tool, specifically focusing on **V3 of Convo**. Here are the main points:\n\n1. **Use Cases**: The participant primarily uses collaboration tools for internal team discussions, project tracking, and brainstorming. They also acknowledged the need for tools that facilitate communication with external stakeholders, emphasizing the importance of sharing updates clearly and concisely.\n\n2. **Valuable Features**:\n   - Intuitive commenting system.\n   - Clean and fast User Interface (UI).\n   - Seamless integration of quick task lists within conversation threads.\n\n3. **Areas for Improvement**:\n   - **Integrations**: The participant suggests improving integrations with popular productivity tools like Notion and Asana to automate updates across platforms.\n   - **Mobile Experience**: They recommend enhancing the mobile interface by optimizing button placement and size for better navigability.\n\n4. **Conclusion**: The participant offers valuable insights into the tool's current strengths and areas of improvement, expressing willingness to provide further input in future conversations.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.21389448642730713,
+      0.34054380655288696,
+      0.18593138456344604,
+      0.25362008810043335,
+      0.2377353310585022,
+      0.2670469880104065,
+      0.25864219665527344,
+      0.19284123182296753,
+      0.22532427310943604,
+      0.21609461307525635
+    ],
+    "avg_hallucination_score": 0.2392,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "47b83699-0d36-424a-9cea-efaf57334fea",
+    "language": "en",
+    "query": "What was discussed after the participant said 'Hmm, I\u2019d say one thing that would be really helpful is bette'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "After the participant said, \"Hmm, I\u2019d say one thing that would be really helpful is better integrations with other platforms,\" the following was discussed:\n\nThe **agent** summarized the point by stating, *\"That\u2019s a good point.\"* \n\nThen, the **agent** elaborated on this suggestion by asking, *\"Anything else?\"*. The participant responded by confirming their previous statement and suggesting a second improvement, *\"maybe some improvements to the mobile experience.\"*. The agent acknowledged this by saying, *\"Got it, so mobile optimization...would be key improvements for you.\"* \n\nThere was no further elaboration on potential solutions or specifics regarding integrations beyond the participant mentioning *\"tools like Notion or Asana\"*.  The conversation then moved on to closing remarks.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.15881359577178955,
+      0.22095084190368652,
+      0.21212202310562134,
+      0.3148897886276245
+    ],
+    "avg_hallucination_score": 0.2267,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "47b83699-0d36-424a-9cea-efaf57334fea",
+    "language": "en",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based on the transcript, the participant expressed an overall positive sentiment towards the product, Convo V3. They praised several features, including:\n\n- The intuitive commenting system.\n- The clean and fast user interface.\n- The ability to create task lists within conversation threads.\n\nThe participant also offered constructive criticism, suggesting improvements such as better integrations with other platforms and enhanced mobile usability, indicating a balanced perspective and a desire for further enhancement. Their tone remained polite, cooperative, and engaged throughout the interview.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.25529980659484863,
+      0.25672757625579834,
+      0.2827679514884949,
+      0.28003382682800293,
+      0.233833909034729,
+      0.2728803753852844
+    ],
+    "avg_hallucination_score": 0.2636,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "47b83699-0d36-424a-9cea-efaf57334fea",
+    "language": "en",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the interview ended was **improvements to the product**, specifically:\n\n* **Mobile experience:** The participant mentioned that the mobile interface felt less optimized and suggested making buttons larger and easier to navigate. \n* **Integrations:** They also requested better integration with platforms like Notion and Asana to automate syncing of tasks and calendar events. \n\nThe participant concluded by expressing willingness to provide further feedback in the future.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.1294897198677063,
+      0.1568279266357422,
+      0.25949394702911377
+    ],
+    "avg_hallucination_score": 0.1819,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "69d11a1c-4207-4e97-ae13-8070d902fa37",
+    "language": "en",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said, \"I'm really happy that you chose me for this little survey and I'm very happy to answer your questions.\"",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.16157865524291992
+    ],
+    "avg_hallucination_score": 0.1616,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "69d11a1c-4207-4e97-ae13-8070d902fa37",
+    "language": "en",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided interview transcript, the participant discussed several topics:\n\n1. **Personal Gaming History and Preferences**: The participant shared their gaming background, including playing games like *The Sims* on their mother's phone and their interest in older games. They expressed a preference for both Mac and Windows environments.\n\n2. **Interest in New Gaming Consoles**: They mentioned being excited about the upcoming release of an Xbox handheld (presumably the Xbox Series X|S) due to its potential to play Windows games on the go, especially while traveling.\n\n3. **Technical Aspects and Design**: The participant showed interest in the technical capabilities of the Xbox, including its components (like Asus and Windows elements), and compared its design (particularly the white model) favorably to the Nintendo Switch.\n\n4. **Gaming Experience and Use Cases**: They discussed the challenges of reading and working during travel and how a handheld console could provide entertainment in these situations. They also talked about testing the console's limits and enjoying it during leisure time.\n\n5. **Games of Interest**: Specific titles mentioned include *Tomb Raider*, expressing a desire to play both modern and classic games.\n\n6. **Financial Situation and Motivation**: The participant acknowledged their current financial constraints and the need to balance gaming aspirations with job responsibilities. They expressed gratitude for the opportunity to participate in the survey and future research.\n\n7. **Future Events and Expectations**: They expressed eagerness to attend Gamescom to see and test the new device and showed interest in VR technology as well.\n\n8. **Research and Testing Willingness**: The participant indicated a willingness to participate in further research and testing, highlighting their enthusiasm for contributing to the development and understanding of new gaming technologies.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.3011566996574402,
+      0.20660912990570068,
+      0.29342615604400635,
+      0.21002280712127686,
+      0.20698797702789307,
+      0.23916727304458618,
+      0.28029221296310425,
+      0.243241548538208,
+      0.23321813344955444,
+      0.28632038831710815,
+      0.22493135929107666,
+      0.2209855318069458
+    ],
+    "avg_hallucination_score": 0.2455,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "69d11a1c-4207-4e97-ae13-8070d902fa37",
+    "language": "en",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided interview transcript, here are the main points discussed:\n\n1. **Interest in New Gaming Consoles**: The participant expresses strong interest in the upcoming Xbox handheld (presumably the Xbox Series X|S Pocket). They mention having previously owned a Nintendo Switch briefly and being excited about the prospect of playing Windows games on the go due to frequent travel.\n\n2. **Aesthetics and Technical Features**: They appreciate the design of the Xbox handheld, particularly its white model, considering it more elegant than the Nintendo Switch. They are also intrigued by the technical aspects, including the use of Asus and Windows components, and the potential for playing a wide range of games.\n\n3. **Gaming Preferences**: The participant identifies as an \"old school\" gamer who enjoys classic games. They specifically mention wanting to play *Tomb Raider* and are eager to explore the capabilities of the new console, including graphics quality and gameplay possibilities.\n\n4. **Financial Situation**: The participant acknowledges their current financial constraints, highlighting that they're not able to afford such a high-end console yet. However, they express hope for a \"little financial injection\" and are grateful for the opportunity to participate in the survey/research.\n\n5. **Research and Future Engagement**: They show enthusiasm for staying updated on gaming technology, including VR glasses, and are keen to learn more through research and testing. They also express willingness to participate in further studies and tests.\n\n6. **Attitude Towards Work and Free Time**: The participant mentions balancing work and personal interests, hoping to secure enough free time to enjoy gaming on the new console once they've saved up enough money.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.27894484996795654,
+      0.18855780363082886,
+      0.24900168180465698,
+      0.2103283405303955,
+      0.2646818161010742,
+      0.24026787281036377,
+      0.23766344785690308,
+      0.24233198165893555,
+      0.26594626903533936,
+      0.21569520235061646,
+      0.2893601655960083,
+      0.23856747150421143
+    ],
+    "avg_hallucination_score": 0.2434,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "69d11a1c-4207-4e97-ae13-8070d902fa37",
+    "language": "en",
+    "query": "What was discussed after the participant said 'I have,'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "After the participant said \"I have,\" they continued by expressing their hope for a financial injection. They thanked the agent for participating in the survey and expressed their willingness to answer any remaining questions and be available for further research opportunities. The conversation concluded with the participant reiterating their enthusiasm for testing and exploring the potential of the new console, including its graphical capabilities, game library, and portability, while also acknowledging their current financial situation.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.23820161819458008,
+      0.25586259365081787,
+      0.22810828685760498
+    ],
+    "avg_hallucination_score": 0.2407,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "69d11a1c-4207-4e97-ae13-8070d902fa37",
+    "language": "en",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "The overall sentiment expressed by the participant throughout the interview is one of enthusiasm, anticipation, and eagerness. Here's a breakdown:\n\n1. **Enthusiasm**: The participant shows a strong desire to own and use the new Xbox handheld (or any similar gaming console). They mention multiple times their excitement about the prospect of playing Windows games on the go due to their frequent travels. They also express interest in the technical aspects of the device, highlighting their curiosity about its capabilities.\n\n2. **Anticipation**: There's a clear sense of expectation regarding the release of the Xbox handheld. The participant discusses how they came up with the idea of HandHornets after considering the potential of this new device. They're looking forward to attending Gamescom to see and test the device.\n\n3. **Gratitude**: The participant expresses gratitude several times\u2014to the agent for conducting the survey and providing an opportunity to share their thoughts, and to their mother for gifting them a new phone on which they could play games like *The Sims*.\n\n4. **Realism**: While enthusiastic, the participant also acknowledges their current financial situation, stating that they aren't \"financially well-off\" and have to be careful with their spending. This adds a note of realism to their aspirations.\n\nIn summary, the participant's tone combines excitement about future possibilities with groundedness in their current circumstances.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.23394161462783813,
+      0.31132638454437256,
+      0.19150149822235107,
+      0.2431437373161316,
+      0.23262661695480347,
+      0.2596592903137207,
+      0.28439849615097046,
+      0.26113569736480713,
+      0.23391449451446533,
+      0.23521476984024048,
+      0.31190454959869385,
+      0.23783940076828003
+    ],
+    "avg_hallucination_score": 0.2531,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "69d11a1c-4207-4e97-ae13-8070d902fa37",
+    "language": "en",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the interview ended was **the participant's willingness to participate in further research and testing opportunities**. The agent expressed their gratitude for the participant's availability and interest in contributing to future studies, specifically mentioning **testing the new Xbox handheld console** and other devices like VR glasses. The participant enthusiastically agreed and expressed eagerness to be involved.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.17947709560394287,
+      0.18107926845550537,
+      0.2607458233833313
+    ],
+    "avg_hallucination_score": 0.2071,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "f45053c8-d0d9-4dab-b88b-69b9b8e085b5",
+    "language": "nl",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said, \"Hallo,\" to initiate the conversation. \n\nThey then proceeded to inform the participant about the purpose of the interaction, stating, \"I'm going to ask you some questions and sometimes also follow-up questions.\" The Agent also assured the Participant that it's okay if there are pauses or accidental interruptions and asked for patience if more thinking time is needed.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.18020498752593994,
+      0.18935424089431763
+    ],
+    "avg_hallucination_score": 0.1848,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "f45053c8-d0d9-4dab-b88b-69b9b8e085b5",
+    "language": "nl",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided interview transcript, the participant discussed the following topics:\n\n1. **Their role as a digital researcher**: They mentioned being a \"digitale onderzoeker\" (digital researcher).\n2. **Learning to conduct good conversations**: The participant expressed that they are learning how to have good conversations with people.\n3. **Apology for potential interruptions**: They apologized for possible pauses or accidental interruptions during the conversation.\n4. **Request for time to think**: They asked the agent to give them more time to think if needed.\n5. **Understanding the purpose of the interview**: The participant acknowledged that they would be answering questions about a part of a website containing information related to losing or changing jobs.\n6. **First impression of the website content**: They were asked about their initial thoughts on the website section concerning job loss or change.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.1951751708984375,
+      0.26262539625167847,
+      0.18104493618011475,
+      0.2105892300605774,
+      0.24672240018844604,
+      0.16626882553100586,
+      0.17717105150222778
+    ],
+    "avg_hallucination_score": 0.2057,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "f45053c8-d0d9-4dab-b88b-69b9b8e085b5",
+    "language": "nl",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In this interview, the **Participant**, who identifies as a digital researcher learning to conduct effective interviews, discusses their experience with a section of a website focused on **losing or changing jobs**. \n\nHere are the key takeaways:\n\n* **Learning Curve:** The participant expresses that they are still in the process of **learning how to conduct good interviews** and acknowledges the possibility of pauses or accidental interruptions. \n* **Website Content:** They share their initial impressions of a website section dedicated to job loss or change.\n* **Open-Ended Questioning:** The **Agent** asks for the participant's **first impression** of the website content, setting up an open-ended question to encourage detailed feedback.\n\nThe interview appears to be part of a **training exercise** where the participant practices interviewing skills while exploring sensitive topics related to employment transitions.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.1896159052848816,
+      0.18998050689697266,
+      0.21880114078521729,
+      0.22383791208267212,
+      0.22600287199020386
+    ],
+    "avg_hallucination_score": 0.2096,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "f45053c8-d0d9-4dab-b88b-69b9b8e085b5",
+    "language": "nl",
+    "query": "What was discussed after the participant said 'Als je wat meer tijd nodig hebt om na te denken,'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "This information is not available in the transcript. The provided text only mentions the participant's request for patience if more time is needed to think, but does not detail what was discussed afterward.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.3546634316444397,
+      0.25058478116989136
+    ],
+    "avg_hallucination_score": 0.3026,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "f45053c8-d0d9-4dab-b88b-69b9b8e085b5",
+    "language": "nl",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided transcript, the participant's overall sentiment appears to be **polite, cooperative, and slightly self-conscious**. \n\nHere's why:\n\n* **\"mijn naam is Convo en ik ben een digitale onderzoeker\"**: This introduction sets a friendly and professional tone. \n* **\"vergeef me als er soms een pauze valt...\"** shows awareness of their own communication style and willingness to adapt.\n* **\"laat het me gewoon weten\"**: Demonstrates openness to feedback and eagerness to participate effectively.\n* **\"Ik ga je een paar vragen stellen...\"** indicates cooperation and readiness to engage.\n\nWhile there aren't explicit expressions of strong emotions, these statements suggest a participant who is genuinely interested in participating and learning, even acknowledging potential limitations in their conversational skills.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.21970325708389282,
+      0.22497975826263428,
+      0.2064802050590515,
+      0.20188361406326294,
+      0.23292315006256104,
+      0.2639418840408325
+    ],
+    "avg_hallucination_score": 0.225,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "f45053c8-d0d9-4dab-b88b-69b9b8e085b5",
+    "language": "nl",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the interview ended was **the participant's experience with viewing a portion of a website containing information about losing or changing jobs**. The participant was asked about their initial impression of this content. \n\n(Direct quote from the transcript: \"Je hebt een deel van de website gezien met informatie... Over het verliezen of veranderen van je baan. [...] Wat was je eerste indruk daarvan?\")",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.12260186672210693,
+      0.18604278564453125,
+      0.3236824870109558,
+      0.38740408420562744,
+      0.3668421506881714
+    ],
+    "avg_hallucination_score": 0.2773,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "4b2ee597-dc48-44a8-9634-a3b8af0770ef",
+    "language": "nl",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said: \"Hallo, mijn naam is komwo en ik ben een digitale onderzoeker. Ik probeer nog te leren hoe ik goed gesprekken kan voeren met mensen.\" (Hello, my name is komwo and I am a digital researcher. I'm still learning how to conduct good conversations with people.)",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.21347957849502563,
+      0.2217087745666504,
+      0.23397976160049438
+    ],
+    "avg_hallucination_score": 0.2231,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "4b2ee597-dc48-44a8-9634-a3b8af0770ef",
+    "language": "nl",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided interview transcript, the participant discussed the following topics:\n\n1. **Introduction**: The participant acknowledged the Agent's introduction and expressed understanding about the purpose of the conversation and any potential pauses or interruptions. \n\n2. **First Impressions of Website Content**: The participant was asked about their initial reaction to the part of the website that provides information on resignation or job change. They were prompted to share their thoughts and feelings regarding this content.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.20892304182052612,
+      0.19198322296142578,
+      0.17144840955734253,
+      0.2755289673805237
+    ],
+    "avg_hallucination_score": 0.212,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "4b2ee597-dc48-44a8-9634-a3b8af0770ef",
+    "language": "nl",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In deze interviewgesprek introduceert de *Agent* zichzelf als een digitale onderzoeker die zijn vaardigheden in het voeren van gesprekken wil verbeteren. De *Participant* geeft aan begrip te hebben voor eventuele pauzes of onderbrekingen tijdens het gesprek. \n\nDe *Agent* vraagt de *Participant* naar zijn/haar eerste indruk van een gedeelte van de website dat betrekking heeft op ontslag of baanverandering. Dit is het enige directe vraag-antwoorduitwisseling in de transcriptie. \n\nSamengevat gaat het hoofdonderwerp van het interview over het verkrijgen van feedback over de website-inhoud rond ontslag en carri\u00e8reverandering vanuit de perspectief van de *Participant*.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.21555745601654053,
+      0.24511468410491943,
+      0.23017501831054688,
+      0.30243980884552,
+      0.24150800704956055
+    ],
+    "avg_hallucination_score": 0.247,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "4b2ee597-dc48-44a8-9634-a3b8af0770ef",
+    "language": "nl",
+    "query": "What was discussed after the participant said 'Dus vergeef me als er een korte pauze valt, of als ik je per'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "After the participant acknowledged the possibility of taking pauses or accidentally interrupting (Dus vergeef me als er een korte pauze valt, of als ik je per ongeluk onderbreek), there was no immediate continuation in the given transcript. The Agent then proceeded to introduce themselves and explain their role as a digital researcher learning to conduct good interviews. The discussion then shifted to the participant's initial impression of the website section related to dismissal or job change.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.15987759828567505,
+      0.2579995393753052,
+      0.22118550539016724
+    ],
+    "avg_hallucination_score": 0.213,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "4b2ee597-dc48-44a8-9634-a3b8af0770ef",
+    "language": "nl",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided transcript, the participant seems **calm, cooperative, and slightly self-conscious**. \n\nHere's why:\n\n* **\"Dus vergeef me als er een korte pauze valt, of als ik je per ongeluk onderbreek.\"** This statement expresses a desire to be patient and understanding, suggesting a willingness to participate but also acknowledging potential awkwardness due to learning curves.\n* **\"Als je even wilt denken, laat het me gerust weten, dan wacht ik gewoon even.\"**  This shows adaptability and respect for the participant's thought process, indicating the participant understands the importance of thoughtful responses.\n* There's no indication of negativity, anger, or defensiveness in their language.\n\nOverall, the participant comes across as polite, open, and eager to engage constructively with the interview process.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.22406065464019775,
+      0.19600486755371094,
+      0.20655715465545654,
+      0.28124570846557617,
+      0.23050189018249512
+    ],
+    "avg_hallucination_score": 0.2277,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "4b2ee597-dc48-44a8-9634-a3b8af0770ef",
+    "language": "nl",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the end of the interview was **the participant's initial impression** of the website section related to **information about leaving a job or changing careers**. \n\n(Based on the transcript: \"Om te beginnen, Je hebt een deel van de website gezien met informatie over ontslag of verandering van baan. **Wat was je eerste indruk?\")",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.1368093490600586,
+      0.22180622816085815,
+      0.22720372676849365
+    ],
+    "avg_hallucination_score": 0.1953,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "e62d7968-3b35-45b1-8954-b4c492be26ca",
+    "language": "nl",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said: \"Hoi, mijn naam is comfo en ik ben een digitale onderzoeker. Ik leer nog hoe ik goede gesprekken kan voeren met mensen, dus vergeef me als er een pauze valt. Of als ik je per ongeluk onderbreek. Mocht je even bedenktijd nodig hebben, laat het gerust weten.\" \n\n(Translation: \"Hello, my name is comfo and I am a digital researcher. I'm still learning how to conduct good conversations with people, so please forgive me if there are pauses or if I accidentally interrupt you. If you need time to think, feel free to let me know.\")",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.2607215642929077,
+      0.3072885274887085,
+      0.33252012729644775,
+      0.27482670545578003,
+      0.2573701739311218,
+      0.3105999827384949
+    ],
+    "avg_hallucination_score": 0.2906,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "e62d7968-3b35-45b1-8954-b4c492be26ca",
+    "language": "nl",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided interview transcript, the participant discussed the following topics:\n\n1. **Introduction**: The participant acknowledged the Agent's introduction and expressed understanding about learning to conduct good conversations, apologizing for potential pauses or accidental interruptions.\n2. **Understanding and Patience**: They also understood that the Agent might ask deepening questions and requested patience if they needed thinking time.\n3. **Website Content**: The participant confirmed having seen a portion of the website related to information about dismissal or job change (\"Je hebt een deel van de website gezien over informatie rondom ontslag of baanverandering\").",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.20538026094436646,
+      0.1765996813774109,
+      0.2341713309288025,
+      0.19060802459716797
+    ],
+    "avg_hallucination_score": 0.2017,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "e62d7968-3b35-45b1-8954-b4c492be26ca",
+    "language": "nl",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In this interview, the Agent, who identifies as a digital researcher learning to conduct effective interviews, introduces themselves to a Participant. The Agent acknowledges potential pauses or accidental interruptions and assures flexibility for thought. They express their intention to ask deepening questions and begin by asking about the Participant's experience with the website's content related to dismissal or career change. \n\nThe key takeaways from the brief exchange are:\n\n1. **Introduction and Purpose:** The Agent is learning interview skills and seeks to create a comfortable environment for the Participant.\n2. **Website Content:** The discussion starts with a focus on the Participant's interaction with sections of a website concerning job loss or career transition.\n3. **Open-Ended Questioning:** The Agent employs open-ended questions (\"Wat was je vraag?\") suggesting an exploratory conversation.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.2140505313873291,
+      0.24821579456329346,
+      0.2198132872581482,
+      0.28956812620162964,
+      0.21638262271881104,
+      0.20859622955322266,
+      0.2672014832496643
+    ],
+    "avg_hallucination_score": 0.2377,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "e62d7968-3b35-45b1-8954-b4c492be26ca",
+    "language": "nl",
+    "query": "What was discussed after the participant said 'Wat was je vraag?'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided transcript, the immediate follow-up after the participant's response \"Wat was je vraag?\" is not specified. The agent had previously mentioned they were about to start with a broad question related to the website section about dismissal or job change, but the exact question is not repeated or answered in this excerpt. \n\nTherefore, the discussion that followed can't be determined from the given text. This information **is not available in the transcript**.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.19496870040893555,
+      0.2524770498275757,
+      0.29642772674560547,
+      0.344007670879364
+    ],
+    "avg_hallucination_score": 0.272,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "e62d7968-3b35-45b1-8954-b4c492be26ca",
+    "language": "nl",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided transcript, the participant seems to be cooperative, polite, and slightly nervous. They show a willingness to engage in the conversation but also acknowledge their potential for making mistakes due to learning (or being new) to this type of interaction (\"vergeef me als er een pauze valt...of als ik je per ongeluk onderbreek\"). The participant is also respectful and understanding towards the Agent's learning process, offering \"bedenktijd\" if needed. \n\nOverall, the tone can be described as cautiously positive and open, with a hint of humility.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.21638500690460205,
+      0.21962767839431763,
+      0.23141151666641235,
+      0.275077760219574
+    ],
+    "avg_hallucination_score": 0.2356,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "e62d7968-3b35-45b1-8954-b4c492be26ca",
+    "language": "nl",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided transcript, the last topic discussed before the interview ended was **the participant's experience with the website's content about dismissal or job change**. The Agent stated, \"Ik stel ook soms wat verdiepende vragen\" (I also ask some follow-up questions), implying that the conversation was delving into this topic. No other explicit mention of subsequent topics is present in the given transcript.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.14426296949386597,
+      0.2239779233932495,
+      0.2556648254394531
+    ],
+    "avg_hallucination_score": 0.208,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "e01f4f5a-a288-4b38-aa38-0c6f6ea14ab1",
+    "language": "nl",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said: \"Hallo, mijn naam is Convo en ik ben een digitale onderzoeker. Ik leer nog steeds hoe ik goede gesprekken kan voeren met mensen. Dus vergeef het me als er soms een korte pauze valt, of als ik je onderbreek. Als je wat meer tijd nodig hebt om na te denken, laat het me gewoon weten. Ik kan ook een paar vervolgvragen stellen om meer duidelijkheid te krijgen.\"",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.18233567476272583,
+      0.2019120454788208,
+      0.1941940188407898,
+      0.1999308466911316,
+      0.21238869428634644
+    ],
+    "avg_hallucination_score": 0.1982,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "e01f4f5a-a288-4b38-aa38-0c6f6ea14ab1",
+    "language": "nl",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided interview transcript, the participant discussed the following topics:\n\n1. **Introduction**: The participant acknowledges the interviewer's introduction, expresses appreciation for being invited, and agrees to participate.\n\n2. **First Impression of Website Content**: The participant was asked about their initial impression of the website section related to losing or changing jobs. \n\nNo other explicit topics are covered in the shared excerpt.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.20300304889678955,
+      0.22485071420669556,
+      0.16973555088043213,
+      0.2755114436149597
+    ],
+    "avg_hallucination_score": 0.2183,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "e01f4f5a-a288-4b38-aa38-0c6f6ea14ab1",
+    "language": "nl",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In this interview, the **Agent** introduces themselves as a digital researcher learning to conduct effective interviews. They set expectations for potential pauses and request clarification if needed. The primary focus of the conversation revolves around gathering the **Participant's** initial impressions of a website section dedicated to dealing with job loss or career change. \n\nHere are the key takeaways:\n\n* **Introduction:** The Agent identifies themselves and expresses their role as a developing interviewer. \n* **Objective:** To understand the Participant's first thoughts upon viewing website content about job loss and career transition.\n* **Lack of Specific Details:** The transcript does not provide any direct quotes or specific reactions from the Participant regarding their initial impression. It only states \"Fijn dat je er bent\" (Nice to be here) as a polite acknowledgment.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.34988933801651,
+      0.3867335319519043,
+      0.36191749572753906,
+      0.3447412848472595,
+      0.34867191314697266,
+      0.3559994697570801,
+      0.33549654483795166
+    ],
+    "avg_hallucination_score": 0.3548,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "e01f4f5a-a288-4b38-aa38-0c6f6ea14ab1",
+    "language": "nl",
+    "query": "What specific statements did the participant make?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided interview transcript, the participant stated:\n\n1. **\"Fijn dat je er bent.\"** (Nice to see you/be here.)\n2. **\"Bedankt dat je meedoet.\"** (Thank you for participating.)",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.4009721875190735,
+      0.3042753338813782,
+      0.30286598205566406
+    ],
+    "avg_hallucination_score": 0.336,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "e01f4f5a-a288-4b38-aa38-0c6f6ea14ab1",
+    "language": "nl",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided transcript, the participant seems **receptive and cooperative**. They acknowledge the agent's introduction and efforts to establish a comfortable conversation flow by expressing understanding and gratitude for being included in the study (\"Fijn dat je er bent,\" \"Bedankt dat je meedoet\"). The participant also actively engages with the open-ended question about their first impression, indicating a willingness to participate and share their thoughts. \n\nThere's no indication of negativity, anxiety, or discomfort that would suggest a different sentiment. The tone is polite, friendly, and open.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.22062480449676514,
+      0.23105543851852417,
+      0.23217839002609253,
+      0.28678858280181885,
+      0.2900562882423401
+    ],
+    "avg_hallucination_score": 0.2521,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "e01f4f5a-a288-4b38-aa38-0c6f6ea14ab1",
+    "language": "nl",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the interview ended was **the participant's initial impression of the website section related to losing or changing jobs**. The agent asked, \"Wat was je eerste indruk?\" (What was your first impression?) \n\nThere's no further detail about the participant's response given in this excerpt of the transcript.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.12078207731246948,
+      0.15355747938156128
+    ],
+    "avg_hallucination_score": 0.1372,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "34baa623-95d0-4777-b8f6-d29ada11cedf",
+    "language": "en",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said, \"Hi, my name is Convo and I'm a digital researcher.\"",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.13004177808761597
+    ],
+    "avg_hallucination_score": 0.13,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "34baa623-95d0-4777-b8f6-d29ada11cedf",
+    "language": "en",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided interview transcript, the participant discussed the following topics:\n\n1. **Learning to communicate with humans**: The participant expressed that they are still learning how to have good conversations with humans and acknowledged potential pauses or interruptions.\n2. **Request for understanding and patience**: They asked for forgiveness for any pausing or cutting off and suggested seeking additional time to think if needed.\n3. **Anonymous Participant feature**: This was the initial topic raised by the participant, indicating an interest in discussing the functionality or perception of anonymity in interactions.\n\nThese points constitute the main subjects brought up during the interview as per the transcript.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.214116632938385,
+      0.19401931762695312,
+      0.24860697984695435,
+      0.18758326768875122,
+      0.2592514753341675
+    ],
+    "avg_hallucination_score": 0.2207,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "34baa623-95d0-4777-b8f6-d29ada11cedf",
+    "language": "en",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided interview transcript, here are the main points:\n\n1. **Introduction**: The participant acknowledges their ongoing learning process regarding human conversation and expresses forgiveness for any pauses or interruptions. They also request permission to take thinking time if needed.\n\n2. **Topic Introduction**: The participant opens the conversation by inquiring about the Agent's perspective on the \"Anonymous Participant feature.\" \n\n3. **No Specific Details Provided**: However, since no further details about the Anonymous Participant feature were discussed in the given transcript, it's unclear what exactly the feature entails or what the participant is seeking to understand about it.\n\nThe interview sets up a context of mutual understanding and adaptability, highlighting the participant's willingness to learn and communicate effectively while allowing for pauses and thoughtful responses from the Agent.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.25427377223968506,
+      0.19192665815353394,
+      0.2935417890548706,
+      0.20146512985229492,
+      0.2425878643989563,
+      0.22965455055236816
+    ],
+    "avg_hallucination_score": 0.2356,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "34baa623-95d0-4777-b8f6-d29ada11cedf",
+    "language": "en",
+    "query": "What was discussed after the participant said 'If you ever need some extra time to think,'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "The participant's statement \"So, to start off, what do you think of the Anonymous Participant feature?\" follows their acknowledgment that they are still learning to have good conversations and might pause or cut the agent off. This suggests that the discussion then shifted to the topic of the \"Anonymous Participant\" feature, although the transcript does not provide the specifics of their thoughts or response to this question. The conversation appears to be about the functionality or implications of allowing anonymous participants in a conversation interface.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.2164062261581421,
+      0.19249564409255981,
+      0.23583984375
+    ],
+    "avg_hallucination_score": 0.2149,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "34baa623-95d0-4777-b8f6-d29ada11cedf",
+    "language": "en",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided transcript, the participant's overall sentiment appears to be one of **humility and self-awareness**. They acknowledge their ongoing learning process (\"I'm still learning how to have good conversations...\") and express forgiveness for potential pauses or interruptions (\"please forgive me if there's a pause...\"). This suggests a willingness to learn and improve, coupled with a bit of nervousness or uncertainty.\n\nAdditionally, they demonstrate **patience and adaptability** by offering to allow the agent time to think and asking for permission to pause, indicating an understanding that the conversation might require careful consideration.\n\nIn summary, the participant's tone is polite, open, and receptive, reflecting a learner's mindset.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.2169453501701355,
+      0.2180226445198059,
+      0.25095945596694946,
+      0.22849023342132568,
+      0.2319803237915039
+    ],
+    "avg_hallucination_score": 0.2293,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "34baa623-95d0-4777-b8f6-d29ada11cedf",
+    "language": "en",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided transcript, the last topic discussed before the interview ended was **the Anonymous Participant feature**. The participant brought up their experience with this feature and expressed their thoughts on it. \n\nNo other specific topics were mentioned before the end of the conversation.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.16478097438812256,
+      0.23555314540863037,
+      0.24887162446975708
+    ],
+    "avg_hallucination_score": 0.2164,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "1af8cf99-525c-434d-9752-fb258e475723",
+    "language": "nl",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said: \"Hoi, mijn naam is Convo en ik ben een digitale onderzoeker. Ik leer nog hoe ik goede gesprekken kan voeren met mensen.\" which translates to: \"Hello, my name is Convo and I am a digital researcher. I am still learning how to conduct good conversations with people.\"",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.24066245555877686,
+      0.25006103515625,
+      0.2294292449951172
+    ],
+    "avg_hallucination_score": 0.2401,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "1af8cf99-525c-434d-9752-fb258e475723",
+    "language": "nl",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided interview transcript, the participant discussed the following topics:\n\n1. **Introduction**: The participant acknowledges the agent's introduction and expresses understanding about potential pauses or accidental interruptions due to the agent's learning process.\n2. **Website Information**: The participant mentions having seen a part of a website that provides information about losing or changing jobs.\n3. **First Impressions**: The participant was asked for their initial thoughts or reactions to the website section regarding job loss or change.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.19296997785568237,
+      0.165063738822937,
+      0.17708969116210938,
+      0.1658075451850891
+    ],
+    "avg_hallucination_score": 0.1752,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "1af8cf99-525c-434d-9752-fb258e475723",
+    "language": "nl",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In this interview, the **Participant** shares their initial thoughts after viewing a section of a website focused on themes of job loss or change. Here are the key takeaways:\n\n- **First Impressions:** The Participant mentions that upon first looking at the website content, they had a general understanding of the topic but wanted to explore further.\n- **Engagement and Support:** They appreciate the agent's approach, acknowledging potential pauses and offering patience, which makes them feel comfortable asking questions and taking time to think.\n- **Relevance:** The Participant seems interested in delving deeper into the subject matter, indicating a need for more detailed information and potentially personal stories related to losing or changing jobs. \n- **Interaction:** They express willingness to ask follow-up questions, suggesting an interactive and engaging conversation style is encouraged by the agent's open-ended questions and patient demeanor.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.21231824159622192,
+      0.22120171785354614,
+      0.22510260343551636,
+      0.22261929512023926,
+      0.20966339111328125
+    ],
+    "avg_hallucination_score": 0.2182,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "1af8cf99-525c-434d-9752-fb258e475723",
+    "language": "nl",
+    "query": "What was discussed after the participant said 'Ik zal ook wat vervolgvragen stellen als dat nodig is.'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "The transcript does not provide any details about what was discussed **after** the participant stated, \"Ik zal ook wat vervolgvragen stellen als dat nodig is.\"  The conversation prior to that statement focused on setting ground rules for the interview (e.g., allowing for pauses and clarifying questions).  \n\nTherefore, this information **is not available in the transcript**.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.18867778778076172,
+      0.2963447570800781
+    ],
+    "avg_hallucination_score": 0.2425,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "1af8cf99-525c-434d-9752-fb258e475723",
+    "language": "nl",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided transcript, the participant seems **receptive, cooperative, and understanding**. They demonstrate this through:\n\n* **Acknowledging potential issues:** The participant apologizes for potential pauses or accidental interruptions, showing awareness of the interaction dynamics. \n* **Open communication:** They encourage open dialogue by inviting the agent to wait if needed and promising to ask follow-up questions.\n* **Positive attitude:** The phrase \"laten we beginnen\" (let's start) indicates a willingness to engage and participate.\n\nWhile the transcript doesn't offer a detailed emotional readout, these behaviors suggest a generally **positive and collaborative tone**.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.21006864309310913,
+      0.20909041166305542,
+      0.2215118408203125,
+      0.23967403173446655,
+      0.2425539493560791
+    ],
+    "avg_hallucination_score": 0.2246,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "1af8cf99-525c-434d-9752-fb258e475723",
+    "language": "nl",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the end of the interview was **the participant's initial impression of the part of the website that provides information about losing or changing jobs**. \n\n(Based on the transcript: \"Je hebt een deel van de website gezien met informatie over het verliezen of veranderen van werk. ... Wat was je eerste indruk?\")",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.09112262725830078,
+      0.29735124111175537,
+      0.3419885039329529
+    ],
+    "avg_hallucination_score": 0.2435,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "f365fc27-52c5-4f51-aa57-b6bd5a211fd4",
+    "language": "nl",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "De interviewer (Agent) zei aan het begin van de conversatie:\n\n\"Hallo. Mijn naam is Convo en ik ben een digitale onderzoeker. Ik ben nog aan het leren hoe ik goede gesprekken kan voeren met mensen. Vergeef het me als er soms een korte pauze valt, of als ik je per ongeluk onderbreek.\"\n\nHij herhaalde dit later nogmaals om de deelnemer gerust te stellen over zijn zacht spreken.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.180061936378479,
+      0.1791391372680664,
+      0.15181761980056763,
+      0.14110791683197021
+    ],
+    "avg_hallucination_score": 0.163,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "f365fc27-52c5-4f51-aa57-b6bd5a211fd4",
+    "language": "nl",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Tijdens dit interview besprak de deelnemer de volgende onderwerpen:\n\n1. **Eerste indrukken van de website-informatie over uitdienstgaan**: De deelnemer had geen voorafgaande kennis over wat uitdienstgaan als zelfstandige inhoudt en wat men kan doen om zelf pensioen op te bouwen. Na het interview was de informatie duidelijk geworden.\n\n2. **Toon en structuur van de website-inhoud**: De deelnemer vond de toon zowel zakelijk als vriendelijk, en de presentatie van de informatie in tabbladen/secties intuitief en logisch.\n\n3. **Hoeveelheid en duidelijkheid van de tekst**: De deelnemer vond de hoeveelheid informatie voldoende en de uitleg over uitdienstgaan duidelijk en begrijpelijk.\n\n4. **Verbeterpunten voor de website**: Er werd voorgesteld om de inactiviteit of irrelevantie van bepaalde delen van de website duidelijker aan te geven. Ook werd gesuggereerd om belangrijke informatie prominenter te markeren.\n\n5. **Persoonlijke werkervaring en pensioenplannen**: De deelnemer werkt al bijna 9 jaar in de gezondheidszorg, eerst bij GGZ en nu bij ARCI. Ze hadden eerder van baan veranderd, maar hadden niet specifiek nagedacht over hun pensioen bij die verandering.\n\n6. **Advies voor PFZW**: De deelnemer stelde voor dat PFZW de website meer zou promoten en linkt ernaar wanneer er veranderingen plaatsvinden, zoals bij een baanverandering, om mensen direct toegang te bieden tot relevante informatie.\n\n7. **Ervaring met AI-interviewen**: De deelnemer vond het interview met de AI een van de beste tot nu toe en ervoer het als een prettig gesprek dat goed samengevat werd.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.2607649564743042,
+      0.20843899250030518,
+      0.3113023042678833,
+      0.22285360097885132,
+      0.21444308757781982,
+      0.25143224000930786,
+      0.286749005317688,
+      0.24484241008758545,
+      0.28424274921417236,
+      0.23650580644607544,
+      0.24271047115325928
+    ],
+    "avg_hallucination_score": 0.2513,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "f365fc27-52c5-4f51-aa57-b6bd5a211fd4",
+    "language": "nl",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In dit interview bespreken de Agent en de Participant de website van PFZW, met specifieke focus op de informatie over uitdienstgaan voor zelfstandigen. Hieronder een samenvatting van de belangrijkste punten:\n\n**Website-inhoud en -structuur:**\n\n* De Participant had geen voorkennis over uitdienstgaan als zelfstandige en vond de informatie op de website duidelijk en nuttig. \n* De toon van de website werd beschreven als zowel zakelijk als vriendelijk, met een logische structuur en intu\u00eftieve presentatie in kaders.\n* De hoeveelheid informatie werd als gebalanceerd beschouwd.\n* Er werd voorgesteld om bepaalde gedeelten van de website die momenteel niet functioneel zijn, duidelijker te markeren om de gebruiksvriendelijkheid te verbeteren.\n* Een suggestie was om een opvallender kleur te gebruiken voor vragen om ze sneller zichtbaar te maken.\n\n**Pensioen en baanverandering:**\n\n* De Participant is al negen jaar actief in de zorgsector, eerst bij GGZ en nu bij ARCI.\n* Bij een vorige baanverandering dacht de Participant niet specifiek na over pensioen, omdat hij/zij nog te jong was.\n* De Participant waardeerde het nadeel van een nieuw begin bij een nieuwe baan, maar zag het als een noodzakelijke stap.\n\n**Verbeterpunten voor de website:**\n\n* **Proactieve communicatie:**  De Participant suggereerde om links naar de website te plaatsen wanneer er veranderingen in de arbeidsvoorwaarden zijn, zodat mensen direct toegang hebben tot relevante informatie.\n\n**Ervaring met AI-interviewer:**\n\n* De Participant vond het interview met de AI-interviewer aangenaam en effectief, het voelde als een natuurlijk gesprek. \n* De samenvatting aan het einde van het interview werd positief beoordeeld.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.24764442443847656,
+      0.21722137928009033,
+      0.24764174222946167,
+      0.27268409729003906,
+      0.23900353908538818,
+      0.27683883905410767,
+      0.2685723900794983,
+      0.27278614044189453,
+      0.27883434295654297,
+      0.23954850435256958,
+      0.25846540927886963,
+      0.29011499881744385
+    ],
+    "avg_hallucination_score": 0.2591,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "f365fc27-52c5-4f51-aa57-b6bd5a211fd4",
+    "language": "nl",
+    "query": "What was discussed after the participant said 'Wat het betekent als je als zelfstandige uitdienst gaat en w'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "After the participant expressed their initial uncertainty about what \"going out of service\" as a self-employed individual means and what they could do to maintain their pension, the conversation flowed as follows:\n\n- **Clarifying the Concept:** The agent confirmed that the participant had previously been unaware of the implications of going out of service as a freelancer. The agent then ensured the participant understood that the website provided information about this process, although it was new knowledge for them at the time.\n\n- **Tone and Structure of Communication:** The participant described the website's communication as both professional and clear, appreciating its structured presentation with headings and subheadings. They found the content intuitive and well-organized.\n\n- **Amount of Text:** They believed the amount of text on the website was balanced and sufficient, neither too much nor too little.\n\n- **Clarity of Information:** When asked about the clarity of the explanation regarding going out of service, the participant confirmed they now understood their options after reading the content. This was a positive outcome, as they hadn't known much beforehand.\n\n- **Suggestions for Improvement:** The participant suggested improving the website by indicating which sections might be temporarily inactive or irrelevant, making navigation easier. They specifically mentioned changing the color of headings to make them stand out more.\n\n- **Personal Background and Career:** During a follow-up question about their work, the participant shared their experience as a project manager in the healthcare sector for nearly nine years, currently working for ARCI. They reflected on their previous job change, stating they hadn't extensively considered retirement and pensions at that time due to having an open-ended contract.\n\n- **Advice for PFZW:** The participant advised PFZW to provide links to the website during significant career transitions, ensuring people know where to find relevant information about changes related to their benefits.\n\n- **Experience with AI Interviewing:** Finally, the participant found the interaction with the AI interviewer pleasant, describing it as one of the best experiences so far. They appreciated how the conversation felt natural and was well-summarized.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.21850425004959106,
+      0.29827117919921875,
+      0.24004167318344116,
+      0.30586129426956177,
+      0.25374215841293335,
+      0.23668509721755981,
+      0.3448565602302551,
+      0.2551289200782776,
+      0.3207329511642456,
+      0.2519780397415161,
+      0.30811554193496704,
+      0.23654663562774658,
+      0.24608474969863892,
+      0.29877203702926636
+    ],
+    "avg_hallucination_score": 0.2725,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "f365fc27-52c5-4f51-aa57-b6bd5a211fd4",
+    "language": "nl",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "The participant expressed a generally **positive** sentiment throughout the interview. Here's how it can be broken down:\n\n- They showed **appreciation** for the digital researcher (Agent) and the process, complimenting them on their communication style and the structure of the interview. \n- The participant was **open and honest** about their initial lack of understanding regarding \"going out of service\" as a freelancer but became more confident and clear about the topic by the end.\n- They found the **tonal balance** between professionalism and approachability on the website effective.\n- Despite mentioning one area for improvement (indicating a desire to see better indication of inactive sections), they ended the interview expressing satisfaction with the website and the interaction.\n- When asked about their experience with interacting with an AI interviewer, they described it as one of the best they've had, praising its conversational nature. \n\nOverall, the participant's language and responses suggest a positive attitude and willingness to engage, even offering constructive criticism in a helpful manner.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.2476763129234314,
+      0.22256112098693848,
+      0.25214922428131104,
+      0.27456939220428467,
+      0.24322426319122314,
+      0.25852376222610474,
+      0.23807716369628906
+    ],
+    "avg_hallucination_score": 0.2481,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "f365fc27-52c5-4f51-aa57-b6bd5a211fd4",
+    "language": "nl",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the interview ended was how to improve the website's communication regarding changing jobs and retirement planning. The participant suggested that PFZW could link to the website from their communications when changes occur, such as job transitions, to proactively provide guidance and ensure people are aware of updates. They also mentioned that occasional checks on the website might be helpful, as they don't visit it regularly.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.390236496925354,
+      0.37644708156585693,
+      0.40924227237701416
+    ],
+    "avg_hallucination_score": 0.392,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "092b82a1-6c93-46ac-bbaf-6cc1d91944e3",
+    "language": "en",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said, \"Hi, my name is Convo and I'm a digital researcher. I'm still learning how to have good conversations with humans, please forgive me if there's a pause or I cut you off. If you ever need some extra time to think, just tell me to pause.\"",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.22208130359649658,
+      0.2250332236289978,
+      0.2565155029296875
+    ],
+    "avg_hallucination_score": 0.2345,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "092b82a1-6c93-46ac-bbaf-6cc1d91944e3",
+    "language": "en",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided interview transcript, the participant discussed the following topics:\n\n1. **Introduction**: The participant acknowledged the interviewer's introduction as a digital researcher learning to conduct human conversations.\n2. **Communication Style**: They expressed understanding for potential pauses or interruptions during the conversation and offered to allow the interviewer to request breaks if needed.\n3. **Anonymous Participant Feature**: This was the primary topic of discussion, although the participant's opinion on it is not explicitly stated. There's no detailed feedback or commentary given about the feature itself.\n4. **Follow-Up Questions**: The participant indicated they might ask follow-up questions during the course of the conversation.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.21979403495788574,
+      0.19282615184783936,
+      0.20574188232421875,
+      0.2210424542427063,
+      0.29707515239715576,
+      0.22016721963882446
+    ],
+    "avg_hallucination_score": 0.2261,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "092b82a1-6c93-46ac-bbaf-6cc1d91944e3",
+    "language": "en",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided interview transcript, here's a summary of the main points:\n\n1. **Introduction**: The agent introduces themselves as Convo, a digital researcher learning to conduct better human conversations, and acknowledges potential pauses or interruptions from the participant.\n\n2. **Purpose of the Interview**: The agent expresses that they might need extra time for thought and encourages the participant to pause if needed, allowing for more thoughtful responses.\n\n3. **Topic of Discussion**: The primary topic is the participant's opinion on the \"Anonymous Participant feature.\" \n\nThere aren't many detailed insights shared about this feature; the conversation appears to be exploratory in nature, establishing a conversational flow. The participant is expected to provide feedback or thoughts on the concept of anonymity in participation, but the specifics of their response are not recorded in the given transcript.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.25600624084472656,
+      0.19709014892578125,
+      0.2133360505104065,
+      0.20195114612579346,
+      0.24836945533752441
+    ],
+    "avg_hallucination_score": 0.2234,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "092b82a1-6c93-46ac-bbaf-6cc1d91944e3",
+    "language": "en",
+    "query": "What was discussed after the participant said 'so please forgive me if there's a pause or I cut you off.'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "Based solely on the provided transcript, immediately following the participant's statement \"so please forgive me if there's a pause or I cut you off,\" there is no further discussion detailed. The Agent then introduces the purpose of the conversation (\"let's get started\") and asks about the participant's opinion on the \"Anonymous Participant feature.\"\n\nTherefore, the only information from the participant regarding pauses or potential interruptions is their request for forgiveness for such occurrences.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.1787397265434265,
+      0.20094698667526245
+    ],
+    "avg_hallucination_score": 0.1898,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "092b82a1-6c93-46ac-bbaf-6cc1d91944e3",
+    "language": "en",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided transcript, the participant's overall sentiment appears to be neutral and cooperative. They express politeness and understanding towards the Agent, demonstrating willingness to engage and assist despite mentioning potential pauses or interruptions (\"please forgive me if there's a pause...just tell me to pause\"). The participant also shows openness to the conversation and the research process by acknowledging the Agent's learning curve and offering to provide additional context or answers as needed (\"I may ask some follow-up questions along the way\"). These cues suggest a collaborative attitude.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.2178868055343628,
+      0.2175964117050171,
+      0.21206992864608765,
+      0.2979881167411804
+    ],
+    "avg_hallucination_score": 0.2364,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "092b82a1-6c93-46ac-bbaf-6cc1d91944e3",
+    "language": "en",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided transcript, the last topic discussed before the interview ended was **the Anonymous Participant feature**. The participant was asked about their opinion on this feature, and they were open to asking follow-up questions regarding it. No other topics are explicitly mentioned before the end of the conversation.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.11340761184692383,
+      0.1749364733695984,
+      0.22856038808822632
+    ],
+    "avg_hallucination_score": 0.1723,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "37088614-c082-4f2f-b855-fd64f16c9d59",
+    "language": "nl",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "De interviewer (Agent) zei aan het begin van de conversatie: \"Hallo, mijn naam is Convo en ik ben een digitale onderzoeker. Ik leer nog hoe ik goede gesprekken voer met mensen. Vergeef me als er soms een pauze valt, of als ik je per ongeluk onderbreek. Als je even wat langer wilt nadenken over een antwoord, laat het gewoon weten, dan wacht ik even.\"\n\nDaarnaast introduceerde de Agent de doelstelling van het interview: \"Laten we beginnen. Je hebt een deel van de website gezien met informatie over het verliezen of veranderen van je baan. Wat was je eerste indruk?\"",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.21004629135131836,
+      0.23305737972259521,
+      0.23442870378494263,
+      0.21925455331802368,
+      0.2336031198501587,
+      0.30925285816192627
+    ],
+    "avg_hallucination_score": 0.2399,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "37088614-c082-4f2f-b855-fd64f16c9d59",
+    "language": "nl",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "De deelnemer besprak de volgende onderwerpen tijdens het interview:\n\n1. **Onrust bij het bekijken van de website**: De deelnemer voelde zich onrustig bij het lezen van de informatie over het verliezen of veranderen van je baan op de website vanwege angst om zijn/haar baan te verliezen. Deze onrust werd voornamelijk veroorzaakt door het gevoelige onderwerp zelf in plaats van de presentatie of toon van de informatie.\n\n2. **Toon en structuur van de website**: De deelnemer vond de toon van de communicatie duidelijk en begrijpelijk. De structuur van de informatie op de verschillende tabbladen was ook duidelijk, waardoor het gemakkelijk was om relevante informatie te vinden.\n\n3. **Teksthoeveelheid**: De hoeveelheid tekst op de pagina's werd als evenwichtig ervaren, wat bijdroeg aan een betere begrip van de inhoud.\n\n4. **Kwaliteit van de inhoud**: De deelnemer vond de uitleg over het verliezen of veranderen van je baan duidelijk en goed begrijpelijk. Er werden geen specifieke verbeterpunten genoemd.\n\n5. **Gebruikersvriendelijkheid van de website**: De deelnemer vond de website op dat moment voldoende gebruiksvriendelijk en had geen suggesties voor veranderingen.\n\n6. **Persoonlijke achtergrond en carri\u00e8re**: De deelnemer deelt dat hij/zij al 13 jaar werkzaam is in de gehandicapt zorg en dat zijn/haar laatste baanverandering 13 jaar geleden plaatsvond. Hij/zij benadrukt dat pensioen op dat moment geen grote rol speelde vanwege zijn/haar jonge leeftijd.\n\n7. **Advies aan het Pensioenfonds PFZW**: Op basis van zijn/haar ervaring adviseerde de deelnemer het Pensioenfonds PFZW duidelijke en tijdige informatie te bieden aan mensen die hun baan verliezen of veranderen.\n\n8. **Ervaring met AI-interview**: De deelnemer vond het spreken met een AI-interviewer prima en had geen grote verwachtingen, maar was tevreden met het proces.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.2734318971633911,
+      0.1983129382133484,
+      0.25224769115448,
+      0.2432260513305664,
+      0.2575035095214844,
+      0.24443751573562622,
+      0.2501109838485718,
+      0.31267106533050537,
+      0.24131381511688232,
+      0.22810542583465576,
+      0.27966415882110596,
+      0.23034441471099854,
+      0.26010268926620483
+    ],
+    "avg_hallucination_score": 0.2517,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "37088614-c082-4f2f-b855-fd64f16c9d59",
+    "language": "nl",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In deze interview bespreken de Agent en de Participant de website van een Pensioenfonds met betrekking tot het verlies of veranderen van een baan. Hieronder zijn de belangrijkste punten:\n\n**Onrust en Perceptie:**\n\n* De Participant  voelde **onrust** bij het bekijken van de website, voornamelijk vanwege **het gevoel van het verliezen van een baan**, niet zozeer door de presentatie of toon van de informatie.\n* De **duidelijke en rustige toon** van de website werd positief ontvangen.\n* De **structuur en inhoud** werden als **helder en begrijpelijk** beoordeeld.\n* De **teksthoeveelheid** werd als **juist in balans** beschouwd.\n\n**Positieve aspecten van de Website:**\n\n* De **inhoud over het verliezen of veranderen van baan** werd als **duidelijk en goed te begrijpen** ervaren.\n* De Participant kon **niets verbeteren** aan de website.\n* De Participant vindt de website **volledig voldoende** zoals hij is.\n\n**Achtergrond van de Participant:**\n\n* De Participant werkt al **13 jaar** in de **gehandicaptenzorg**.\n* Hun **laatste baanverandering was 13 jaar geleden**, toen zij nog jong waren en zich meer op andere zaken richtte.\n* Ze gaven **geen advies** over hoe het Pensioenfonds mensen die hun baan verliezen kan ondersteunen, omdat zij \"geen idee\" hadden.\n\n**Ervaring met AI-interview:**\n\n* De Participant vond het **prima** om met een AI-interviewer te praten en het was **niet anders dan verwacht**.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.24123108386993408,
+      0.19322454929351807,
+      0.26252251863479614,
+      0.2669811248779297,
+      0.2879244089126587,
+      0.23263466358184814,
+      0.28281843662261963,
+      0.2804042100906372,
+      0.25847673416137695,
+      0.2737390995025635,
+      0.2552611827850342,
+      0.25977855920791626
+    ],
+    "avg_hallucination_score": 0.2579,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "37088614-c082-4f2f-b855-fd64f16c9d59",
+    "language": "nl",
+    "query": "What was discussed after the participant said 'dertien jaar geleden.'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "After the participant stated \"dertien jaar geleden\" (which translates to \"thirteen years ago\"), the conversation shifted to discuss the participant's last job change and its context. The agent asked:\n\n- **When was the last time they changed jobs?** (Participant confirmed it was thirteen years ago.)\n- **Why wasn't retirement a significant factor at that time?** The participant explained that they were younger at the time and the focus was elsewhere.\n\nThe conversation then progressed into a broader discussion about advice for people facing job loss or transition, with the participant suggesting clear and timely communication from organizations like the Pensioenfonds PFZW.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.3555259108543396,
+      0.4191192388534546,
+      0.38318753242492676
+    ],
+    "avg_hallucination_score": 0.3859,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "37088614-c082-4f2f-b855-fd64f16c9d59",
+    "language": "nl",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based on the transcript, the overall sentiment of the participant can be described as **calm and reserved**. Here's why:\n\n- They express feeling **onrust** (unrest) initially when discussing the website's content, but attribute this mainly to the sensitive nature of the topic rather than any presentation issues.\n- Throughout most of the interview, their responses are concise and direct, suggesting a sense of comfort and confidence in sharing their experiences.\n- When asked about the website's communication style, they describe it as **clear and understandable**, indicating satisfaction with the way information was presented.\n- The participant feels the **amount of text** on the pages was just right, which reflects a positive perception of the site's design.\n- They provide **constructive feedback** without criticism, stating that the website \"works well\" for them and expressing no significant areas for improvement.\n- When discussing their career and advice, they remain **level-headed and thoughtful**, considering their long experience in the sector.\n- Towards the end, they find talking to an AI interviewer **acceptable**, indicating adaptability and openness to new communication methods.\n\nOverall, the participant's demeanor seems characterized by a calm approach, practical thinking, and a willingness to share insights, making them comfortable throughout the interview process.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.41637110710144043,
+      0.39011019468307495,
+      0.44805198907852173,
+      0.4190080165863037,
+      0.4165438413619995,
+      0.420185923576355,
+      0.4301939010620117,
+      0.4036201238632202,
+      0.4529920816421509
+    ],
+    "avg_hallucination_score": 0.4219,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "37088614-c082-4f2f-b855-fd64f16c9d59",
+    "language": "nl",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the interview ended was **how to improve communication with people who are losing or changing jobs**. Specifically, the participant was asked for advice to the Pensioenfonds PFZW (a pension fund) on how to better reach individuals in this situation. The key piece of advice given by the participant was to provide **clear and timely information**.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.3744434118270874,
+      0.31330353021621704,
+      0.37519800662994385
+    ],
+    "avg_hallucination_score": 0.3543,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "310cff70-9f8e-4b70-923c-a6e0d8d93809",
+    "language": "nl",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) said: \"Hoi, mijn naam is Convo en ik ben een digitale onderzoeker. Ik leer nog hoe ik goede gesprekken kan voeren met mensen, dus vergeef het me als er soms een pauze valt, of als ik je per ongeluk onderbreek. Als je wat meer tijd nodig hebt om na te denken, laat het me gewoon weten, dan wacht ik even.\" \n\nHe/she then proceeded to introduce the purpose of the interview, stating that they will be discussing the website of PFZW, specifically the information provided for individuals who are leaving or being dismissed from their job.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.3209797739982605,
+      0.3777974843978882,
+      0.22653067111968994
+    ],
+    "avg_hallucination_score": 0.3084,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "310cff70-9f8e-4b70-923c-a6e0d8d93809",
+    "language": "nl",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "Based on the provided interview transcript, the participant discussed the following topics:\n\n1. **Initial Impressions of the Website Section on Job Loss or Change:**\n   - The participant found the section helpful, noting the presence of a step-by-step plan outlining options and actions to take upon leaving or changing jobs.\n\n2. **Clarity and Tone of Communication:**\n   - They described the communication as friendly and calm, which they found suitable for the sensitive topic.\n\n3. **Structure and Organization of Information:**\n   - The participant praised the logical, step-by-step organization of content, with clear headings and subheadings. They appreciated that each situation had dedicated sections.\n\n4. **Amount of Text and Information Presentation:**\n   - They believed the text was concise yet comprehensive, with the option to expand for more detailed information if needed. They also highlighted the availability of a \"Ask a Question\" or schedule a conversation feature for clarification.\n\n5. **Comprehension of Job Loss and Change Information:**\n   - The participant found most aspects clear and understandable, particularly the pension-related information and switching to a new pension fund processes.\n\n6. **Suggestions for Improvement:**\n   - They suggested adding a section for frequently asked questions (FAQs).\n   - They proposed including additional resources or sections that could be improved or added to enhance the overall user experience.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.2792108654975891,
+      0.20049774646759033,
+      0.21826601028442383,
+      0.21091711521148682,
+      0.2917981743812561,
+      0.213489830493927,
+      0.28798890113830566,
+      0.20618796348571777,
+      0.21617275476455688,
+      0.27366650104522705
+    ],
+    "avg_hallucination_score": 0.2398,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "310cff70-9f8e-4b70-923c-a6e0d8d93809",
+    "language": "nl",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In deze interview bespreking gaat het voornamelijk over de beoordeling van een website van PFZW (een organisatie die zich bezighoudt met ontslag- en pensioneringsprocedures) met betrekking tot de informatie die zij biedt aan werknemers die hun baan verliezen of veranderen. Hieronder de belangrijkste punten:\n\n1. **Eerste indruk en duidelijkheid:** De deelnemer vond het stappenplan en de informatie over het verlies of veranderen van een baan duidelijk en nuttig. Het werd geprezen voor de heldere keuzeopties en instructies.\n\n2. **Toon van de communicatie:** De toon werd beschreven als \"vriendelijk en kalm\", wat positief werd ontvangen.\n\n3. **Structuur en navigatie:** De structuur van de website, met een stapsgewijze indeling, werd gewaardeerd. De mogelijkheid om in elke stap meer informatie te openen, werd gezien als handig. De deelnemer vond de navigatie intu\u00eftief en logisch.\n\n4. **Tekst en inhoud:** De hoeveelheid tekst op de pagina's werd als evenwichtig beschouwd, met voldoende informatie zonder overbelasting. De optie om meer informatie te verkrijgen door uitklapbare secties werd positief beoordeeld.\n\n5. **Begrijpelijkheid:** De meeste informatie werd als duidelijk en begrijpelijk ervaren, met uitzondering van enkele specifieke onderwerpen zoals pensioen, waar de deelnemer meer richtlijnen miste bij het overschakelen naar een ander pensioenfonds.\n\n6. **Voorstellen voor verbetering:** De deelnemer stelde voor om een sectie met veelgestelde vragen (FAQ) toe te voegen aan de website, wat volgens hen nuttig zou zijn voor werknemers met snelle antwoorden op veelvoorkomende vragen.\n\n7. **Aanpassingen:** Als het de deelnemer iets kon veranderen, zou hij/zij een FAQ-sectie toevoegen en mogelijk meer gedetailleerde informatie over specifieke onderwerpen bieden.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.20970982313156128,
+      0.3180583119392395,
+      0.22824126482009888,
+      0.3131895065307617,
+      0.2427438497543335,
+      0.2517697811126709,
+      0.28179723024368286,
+      0.2905500531196594,
+      0.24544870853424072,
+      0.28093403577804565,
+      0.2154175043106079,
+      0.22994786500930786,
+      0.24828475713729858
+    ],
+    "avg_hallucination_score": 0.2582,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "310cff70-9f8e-4b70-923c-a6e0d8d93809",
+    "language": "nl",
+    "query": "What was discussed after the participant said 'Ja,'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "After the participant said \"Ja,\" they continued by suggesting a section for frequently asked questions (FAQs). They expressed that including a page with commonly asked questions would be beneficial. The agent acknowledged this suggestion as good and agreed that having a FAQ section could indeed be useful. \n\nThe conversation then shifted to discussing potential improvements to the website, with the participant indicating their desire for a more prominent FAQs section.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.15860426425933838,
+      0.19540536403656006,
+      0.20730608701705933,
+      0.22183865308761597
+    ],
+    "avg_hallucination_score": 0.1958,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "310cff70-9f8e-4b70-923c-a6e0d8d93809",
+    "language": "nl",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "Based on the transcript, the overall sentiment of the participant can be described as **positive and constructive**. Here's why:\n\n1. **Positive Feedback**: The participant frequently expressed satisfaction with the website content, stating that it was clear, well-structured, and easy to understand. For example, they mentioned that \"it was clear,\" \"logically built,\" \"precisely enough,\" and \"friendly and calm.\"\n\n2. **Constructive Suggestions**: While mostly positive, the participant also offered suggestions for improvement, such as adding a section for frequently asked questions (FAQ). This indicates a critical yet helpful approach.\n\n3. **No Major Complaints**: There were no significant complaints or negative comments about the website. Even when discussing areas where they felt some clarification could be beneficial (like the pension information), their feedback was specific and constructive rather than negative.\n\nIn summary, the participant's responses convey a sense of approval and willingness to help improve the website further, demonstrating a positive attitude throughout the interview.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.21240538358688354,
+      0.3558155298233032,
+      0.2085554003715515,
+      0.27472037076950073,
+      0.1983969807624817,
+      0.29373979568481445,
+      0.2853374481201172,
+      0.2553870677947998,
+      0.2322896122932434
+    ],
+    "avg_hallucination_score": 0.2574,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "310cff70-9f8e-4b70-923c-a6e0d8d93809",
+    "language": "nl",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the interview ended was the participant's suggestion for improvement to the website. Specifically, they proposed adding a section with frequently asked questions (FAQ). This is evident from the following exchange:\n\n**Agent:** En als je nu iets kon veranderen aan de website...\n**Agent:** Wat zou dat dan zijn?\n**Agent:** Is er iets dat je mist of anders zou willen zien?\n\n**Participant:** Ja, een plekje met...\n\nAlthough the exact phrase used by the participant was cut off, the context clearly indicates that they were discussing potential improvements, with their final comment suggesting an FAQ section.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.18317842483520508,
+      0.20204341411590576,
+      0.2660912275314331,
+      0.2891596555709839,
+      0.2835405468940735,
+      0.27500152587890625,
+      0.23950207233428955
+    ],
+    "avg_hallucination_score": 0.2484,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a78560ed-1fea-41a0-92d2-22853fb2fdcd",
+    "language": "en",
+    "query": "What did the interviewer (Agent) say at the beginning of this conversation?",
+    "query_type": "speaker_attribution",
+    "rag_model": "aya23",
+    "rag_response": "The interviewer (Agent) stated, \"I haven't heard from the Xbox handheld before.\" They then proceeded to share their initial thoughts after conducting some research, expressing interest in the concept of combining Xbox and Windows in one device, particularly with the addition of ROG (a gaming brand), considering it a strong gaming company. However, they expressed dissatisfaction with the reported price range of \u20ac500-\u20ac699.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.12325221300125122,
+      0.19842642545700073
+    ],
+    "avg_hallucination_score": 0.1608,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a78560ed-1fea-41a0-92d2-22853fb2fdcd",
+    "language": "en",
+    "query": "What topics did the participant discuss during this interview?",
+    "query_type": "participant_content",
+    "rag_model": "aya23",
+    "rag_response": "The participant discussed several topics during the interview, including:\n\n1. **Xbox Handheld Device**: They expressed initial interest in the concept of combining Xbox, Windows, and ROG (a gaming brand) into a single handheld device. However, they raised concerns about the high price point, estimated at \u20ac500-\u20ac699.\n\n2. **Usage Scenarios**: The participant questioned the practical uses of the handheld device, suggesting that its primary use case might be limited to playing games at home on a PC rather than on the go. They cited lack of occasions where they would use a handheld console while traveling or commuting.\n\n3. **Comparison with Alternatives**: They noted that similar handheld gaming devices from platforms like Steam and PlayStation exist and are likely more affordable, implying that these alternatives may offer better value for money.\n\n4. **Price vs. Performance**: The participant compared the cost of the handheld to a traditional stationary console, suggesting that the smaller form factor might compromise computing power and display quality.\n\n5. **Final Opinion**: They concluded by stating that, based on their initial thoughts and considering the price and performance, the handheld device does not align with their needs and preferences.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.28533220291137695,
+      0.2148304581642151,
+      0.25527721643447876,
+      0.21559369564056396,
+      0.2863858938217163,
+      0.22443681955337524,
+      0.2117440104484558,
+      0.2211989164352417
+    ],
+    "avg_hallucination_score": 0.2393,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a78560ed-1fea-41a0-92d2-22853fb2fdcd",
+    "language": "en",
+    "query": "Summarize the main points discussed in this interview.",
+    "query_type": "factual_summary",
+    "rag_model": "aya23",
+    "rag_response": "In this interview, two individuals discuss the new Xbox handheld device. The key points raised include:\n\n1. **Interest and Concerns**: The Agent expresses initial interest in the device due to its combination of Xbox, Windows, and ROG (a gaming brand), but raises concerns about the high price point, estimated at \u20ac500-\u20ac699.\n\n2. **Use Cases**: The Participant questions the utility of the handheld, suggesting that it's primarily suitable for playing games at home on a PC rather than on the go. They argue that existing alternatives from Steam and PlayStation offer similar functionality at potentially lower cost.\n\n3. **Price vs. Functionality**: Both agree that the price is a significant barrier to adoption. The Participant believes that the handheld might not provide enough advantages over traditional stationary consoles to justify its cost, citing better value for money in standard consoles.\n\n4. **Technical Considerations**: The Participant speculates that the computing power and resolution on the handheld may not match those of a full-sized console, further diminishing its appeal.\n\n5. **Final Thoughts**: While the Agent acknowledges potential changes to their opinion if the device becomes more accessible or affordable, the Participant remains skeptical, stating that the handheld does not seem worth considering given current options and pricing.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.260805606842041,
+      0.33587056398391724,
+      0.18859636783599854,
+      0.20351487398147583,
+      0.2750813961029053,
+      0.266498863697052,
+      0.2421509027481079,
+      0.21971732378005981,
+      0.20362025499343872
+    ],
+    "avg_hallucination_score": 0.244,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a78560ed-1fea-41a0-92d2-22853fb2fdcd",
+    "language": "en",
+    "query": "What was discussed after the participant said 'I don't think I have that many possibilities to use it.'?",
+    "query_type": "specific_content",
+    "rag_model": "aya23",
+    "rag_response": "After the participant stated, \"I don't think I have that many possibilities to use it,\" the conversation shifted to explore the practical considerations and alternatives for using the proposed Xbox handheld device. The following points were discussed:\n\n1. **Limited Use Cases**: The participant suggested that their primary gaming occurs on a PC and they wouldn't see themselves using the handheld for gaming while traveling or on commutes, indicating a lack of immediate need or desire to use it outside of home.\n\n2. **Comparison to Alternatives**: They mentioned that similar devices from platforms like Steam and PlayStation exist, implying that current options might be more suitable and cost-effective for their needs.\n\n3. **Price Concern**: The high price point of the Xbox handheld, around \u20ac500-\u20ac699, was raised again as a significant deterrent. The participant compared it to a regular stationary console, arguing that the latter offers better value for money in terms of performance and display quality.\n\n4. **Potential Change of Opinion**: Despite initial skepticism, the agent expressed openness to changing their mind if the handheld became more accessible or affordable, suggesting a willingness to consider it under different circumstances.\n\n5. **Technical Considerations**: The participant questioned the computational power and display quality of the handheld, comparing it unfavorably to a stationary console in terms of both size and resolution.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.22810310125350952,
+      0.3408740758895874,
+      0.2078912854194641,
+      0.21481585502624512,
+      0.2512892484664917,
+      0.2369939684867859,
+      0.23034405708312988,
+      0.20886683464050293
+    ],
+    "avg_hallucination_score": 0.2399,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a78560ed-1fea-41a0-92d2-22853fb2fdcd",
+    "language": "en",
+    "query": "What was the overall sentiment or tone of the participant during this interview?",
+    "query_type": "sentiment",
+    "rag_model": "aya23",
+    "rag_response": "The participant expressed a generally **negative** sentiment towards the proposed Xbox handheld device. Here's a breakdown of their tone:\n\n1. **Price Point:** They found the price of the handheld (around \u20ac500-\u20ac699) too high and noted that a regular stationary console is cheaper.\n2. **Use Cases:** The participant questioned the practical use of the handheld, suggesting they only play games on a PC and wouldn't see themselves using the handheld while traveling or on the go.\n3. **Comparison to Alternatives:** They mentioned existing alternatives like Steam and PlayStation handhelds, implying that there are already affordable options available.\n4. **Performance Concerns:** They speculated that the computing power and resolution on the handheld might not match up to a stationary console due to its smaller size.\n\nOverall, the participant seemed skeptical and hesitant about the value proposition of the Xbox handheld, primarily due to cost and limited perceived use cases.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.24783647060394287,
+      0.3020678758621216,
+      0.2047562599182129,
+      0.21373355388641357,
+      0.23243939876556396,
+      0.21877729892730713,
+      0.233292818069458
+    ],
+    "avg_hallucination_score": 0.2361,
+    "is_hallucinated": false
+  },
+  {
+    "interview_id": "a78560ed-1fea-41a0-92d2-22853fb2fdcd",
+    "language": "en",
+    "query": "What was the last topic discussed before the interview ended?",
+    "query_type": "temporal",
+    "rag_model": "aya23",
+    "rag_response": "The last topic discussed before the interview ended was the comparison between the proposed Xbox handheld device and existing alternatives, specifically mentioning competitors like Steam and PlayStation who offer similar products. The participant expressed skepticism about the value proposition of the Xbox handheld due to its high price compared to other options, stating, \"That's why I don't know if I would really use it\" and \"As I said, also in terms of price... A normal stationary console costs less than this mobile one.\" They also questioned the quality of performance and display considering the device's form factor.",
+    "method": "selfcheckgpt_bertscore",
+    "sentence_scores": [
+      0.1390681266784668,
+      0.21036899089813232,
+      0.20599663257598877
+    ],
+    "avg_hallucination_score": 0.1851,
+    "is_hallucinated": false
+  }
+]
