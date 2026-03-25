@@ -1,0 +1,36 @@
+# ── Core ───────────────────────────────────────────────────────────────────────
+openai>=1.0.0
+python-dotenv>=1.0.0
+
+# ── HuggingFace models (Qwen, Llama, GEITje, Aya-23) ──────────────────────────
+transformers>=4.40.0
+torch>=2.1.0
+accelerate>=0.26.0          # required for device_map="auto"
+bitsandbytes>=0.42.0        # 4-bit quantization (optional, reduces VRAM)
+sentencepiece>=0.1.99       # tokenizer for GEITje, Aya-23, Qwen
+protobuf>=3.20.0            # required by sentencepiece
+
+# ── Mistral API ────────────────────────────────────────────────────────────────
+mistralai>=1.0.0             # official Mistral Python client
+
+# ── RQ2: SelfCheckGPT ──────────────────────────────────────────────────────────
+selfcheckgpt>=0.1.0
+bert-score>=0.3.13
+
+# ── RQ2: RAGAS (Es et al., EACL 2024) ─────────────────────────────────────────
+ragas>=0.2.0
+datasets>=2.14.0
+
+# ── PDF generation ─────────────────────────────────────────────────────────────
+reportlab>=4.0.0
+
+# ── Statistical analysis ───────────────────────────────────────────────────────
+scikit-learn>=1.3.0          # ensemble_detector.py (LogisticRegression, LOO-CV)
+matplotlib>=3.7.0            # charts and ablation visualisation
+
+# ── Sentence tokenization ──────────────────────────────────────────────────────
+spacy>=3.7.0                 # hallucination_alert.py
+
+# ── Optional: AlignScore ──────────────────────────────────────────────────────
+# alignscore>=0.1.0          # uncomment if using official AlignScore package
+# (falls back to transformers NLI model if not installed)

@@ -55,11 +55,12 @@ import time
 from pathlib import Path
 
 # ── path setup ───────────────────────────────────────────────────────────────
-THESIS_SRC = Path(r"D:\thesis_hallucination\src")
-THESIS_DATA = Path(r"D:\thesis_hallucination\data")
+_ROOT = Path(__file__).parent.parent.parent
+THESIS_SRC = _ROOT / "src"
+THESIS_DATA = _ROOT / "data"
 sys.path.insert(0, str(THESIS_SRC))
 
-_ENV = Path(r"D:\thesis_hallucination\.env")
+_ENV = _ROOT / ".env"
 if _ENV.exists():
     for line in _ENV.read_text(encoding="utf-8-sig").splitlines():
         line = line.strip()
@@ -67,7 +68,7 @@ if _ENV.exists():
             k, _, v = line.partition("=")
             os.environ.setdefault(k.strip(), v.strip())
 
-OUTPUT_DIR = Path(r"D:\RAG_THESIS\output")
+OUTPUT_DIR = _ROOT / "RAG_THESIS" / "output"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 try:
@@ -78,6 +79,15 @@ except ImportError:
     sys.exit(1)
 
 from rag_configs import CONFIGS, PROMPT_TEMPLATES
+
+# ── Group D: Temperature variation (best config C2 × 4 temperatures) ─────────
+TEMPERATURE_CONFIGS = [
+    {**next(c for c in CONFIGS if c["name"] == "C2_rag_c1000_k3_citation_strict"),
+     "name": f"D{i+1}_temp_{t}", "group": "D_temperature", "temperature": t,
+     "description": f"Temperature ablation: C2 config at temp={t}"}
+    for i, t in enumerate([0.0, 0.3, 0.7, 1.0])
+]
+ALL_CONFIGS = CONFIGS + TEMPERATURE_CONFIGS
 
 # ── annotation prompt (E1 style) ─────────────────────────────────────────────
 ANNOTATION_PROMPT = """\
@@ -161,7 +171,7 @@ def retrieve_context(interview, config):
     return "\n\n---\n\n".join(top)
 
 
-def generate_response(context, query, prompt_variant, temperature=0.3):
+def generate_response(context, query, prompt_variant, temperature=0.3):  # noqa: E501
     system = PROMPT_TEMPLATES[prompt_variant].format(context=context)
     resp = client.chat.completions.create(
         model="gpt-4o-mini",
@@ -214,6 +224,8 @@ QUERIES = [
     ("sentiment", "What was the overall sentiment or tone of the participant?"),
     ("factual_summary", "Summarize the main points discussed in this interview."),
     ("temporal", "What was the last topic discussed before the interview ended?"),
+    ("participant_content", "What topics did the participant discuss during this interview?"),
+    ("specific_content", "What were the key concerns or challenges mentioned by the participant?"),
 ]
 
 
@@ -225,7 +237,7 @@ def run_config(config, interviews):
             try:
                 context = retrieve_context(interview, config)
                 time.sleep(0.3)
-                response = generate_response(context, query, config["prompt_variant"])
+                response = generate_response(context, query, config["prompt_variant"], temperature=config.get("temperature", 0.3))
                 time.sleep(0.5)
                 ann = annotate(interview["transcript_text"], query, response)
                 time.sleep(0.5)
@@ -261,12 +273,33 @@ def compute_summary(results, config_name):
     for r in valid:
         for t in r["issue_types"]:
             type_counts[t] = type_counts.get(t, 0) + 1
+
+    # Language breakdown
+    lang_breakdown = {}
+    for lang in set(r.get("language", "unknown") for r in valid):
+        lang_items = [r for r in valid if r.get("language") == lang]
+        if lang_items:
+            lang_breakdown[lang] = {
+                "n": len(lang_items),
+                "hallucination_rate": round(sum(1 for r in lang_items if r["label"] == "HALLUCINATED") / len(lang_items), 4),
+                "avg_faithfulness": round(sum(r["faithfulness"] for r in lang_items) / len(lang_items), 4),
+            }
+
+    # Per query-type breakdown
+    query_breakdown = {}
+    for qtype in set(r.get("query_type", "") for r in valid):
+        qt_items = [r for r in valid if r.get("query_type") == qtype]
+        if qt_items:
+            query_breakdown[qtype] = round(sum(1 for r in qt_items if r["label"] == "HALLUCINATED") / len(qt_items), 4)
+
     return {
         "config": config_name,
         "n": n,
         "hallucination_rate": round(hall_rate, 4),
         "avg_faithfulness": round(avg_faith, 4),
         "hallucination_type_counts": type_counts,
+        "language_breakdown": lang_breakdown,
+        "query_type_breakdown": query_breakdown,
     }
 
 
@@ -276,18 +309,18 @@ def main():
     args = parser.parse_args()
 
     print("=" * 60)
-    print("ABLATION SWEEP — 10 CONFIGURATIONS FROM rag_configs.py")
+    print("ABLATION SWEEP — 14 CONFIGURATIONS (Option B: Full)")
     print("=" * 60)
 
     interviews = load_interviews(args.max_interviews)
     print(f"Using {len(interviews)} interviews × {len(QUERIES)} query types = "
           f"{len(interviews)*len(QUERIES)} evaluations per config")
-    print(f"Total API calls: ~{len(interviews)*len(QUERIES)*len(CONFIGS)*2} (2 per eval)\n")
+    print(f"Total API calls: ~{len(interviews)*len(QUERIES)*len(ALL_CONFIGS)*2} (2 per eval)\n")
 
     all_results = []
     summaries = []
 
-    for cfg in CONFIGS:
+    for cfg in ALL_CONFIGS:
         print(f"\n{'='*50}")
         print(f"Running config: {cfg['name']} | {cfg['description']}")
         print(f"{'='*50}")
@@ -330,7 +363,7 @@ def main():
 
     # ── save results ──────────────────────────────────────────────────────────
     output = {
-        "n_configs": len(CONFIGS),
+        "n_configs": len(ALL_CONFIGS),
         "n_interviews": len(interviews),
         "n_queries_per_config": len(interviews) * len(QUERIES),
         "summaries": valid_summaries,
