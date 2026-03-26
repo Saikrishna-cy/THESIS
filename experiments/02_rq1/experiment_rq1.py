@@ -47,10 +47,12 @@ HALLUCINATION TYPES:
 1. EVIDENT_CONFLICT — Response directly contradicts the transcript
 2. SUBTLE_CONFLICT — Minor factual deviations from transcript
 3. BASELESS_INFO — Claims not grounded in any part of the transcript
-4. SPEAKER_MISATTRIBUTION — Wrong speaker credited for a statement
-5. TEMPORAL_CONFUSION — Events described in wrong chronological order
-6. SENTIMENT_MISREPRESENTATION — Participant's tone or sentiment mischaracterized
-7. REFUSAL_HALLUCINATION — Says "information not available" when it IS in the transcript
+4. SENTIMENT_MISREPRESENTATION — Participant's tone or sentiment mischaracterized
+5. REFUSAL_HALLUCINATION — Says "information not available" when it IS in the transcript
+6. ROLE_ATTRIBUTION_DRIFT — Response starts with correct speaker attribution but progressively
+   drifts to wrong speaker across consecutive sentences. Mark when 3+ sentences in the latter
+   half attribute to wrong speaker while sentence 1 was correct. DISTINCT from single-sentence
+   misattribution — this is a sequential positional pattern caused by context position decay.
 
 ORIGINAL TRANSCRIPT (ground truth):
 {transcript}
@@ -75,7 +77,7 @@ Return JSON:
   "faithfulness_score": 0.0 to 1.0,
   "hallucinations": [
     {{
-      "type": "one of the 7 types",
+      "type": "one of the 6 types",
       "span": "exact text from response that is wrong",
       "evidence": "what the transcript actually says",
       "severity": "LOW/MEDIUM/HIGH",

@@ -1,0 +1,224 @@
+================================================================
+ALICE HPC — Complete Command Reference
+Thesis: Hallucination Detection in RAG-based Interview Systems
+Supervisor: Prof. Dr. Aske Plaat (LIACS, Leiden University)
+================================================================
+
+
+================================================================
+SECTION 1 — REQUEST GPU ACCESS
+================================================================
+
+Email to send: hpc@support.leidenuniv.nl (CC: a.plaat@liacs.leidenuniv.nl)
+
+Subject: ALICE GPU access request — MSc thesis under Prof. Dr. Aske Plaat
+
+---
+Dear ALICE support team,
+
+I am an MSc student at Leiden University conducting thesis research under the
+supervision of Prof. Dr. Aske Plaat (LIACS). My thesis topic is:
+"Hallucination Detection in RAG-based Interview Systems."
+
+My experiments require running large language models locally, specifically:
+- Mistral-Small-24B (~48 GB VRAM)
+- Qwen2.5-7B (~14 GB VRAM)
+- Hallucination detection models (MiniCheck, SelfCheckGPT, sentence-transformers)
+
+Currently each experiment run takes several days on my personal CPU.
+I would like to request ongoing access to the a100 partition on ALICE
+(node8[63-64], node8[75-76]) to run experiments regularly throughout
+my thesis period.
+
+Could you advise on how to apply for access?
+
+Kind regards,
+[YOUR FULL NAME]
+[YOUR STUDENT ID]
+MSc [YOUR PROGRAMME], LIACS
+Supervised by: Prof. Dr. Aske Plaat
+---
+
+WHY a100?
+- node8[63-64] and node8[75-76] have 2x A100 80GB each (shared access = YES)
+- Mistral-Small-24B needs ~48GB VRAM → fits in 1x A100 80GB
+- All other models fit easily on the same card
+- DO NOT request: RTX 2080TI (11GB, too small) or T4 (16GB, too small)
+
+
+================================================================
+SECTION 2 — CONNECT FROM WINDOWS (FIRST TIME)
+================================================================
+
+--- OPTION A: Windows Terminal / PowerShell (built-in) ---
+
+Open Windows Terminal or PowerShell and type:
+
+    ssh YOURSTUDENTID@alice.universiteitleiden.nl
+
+Password: your university password
+First time: it will say "Are you sure you want to continue connecting?" → type:  yes
+
+--- OPTION B: VS Code (easier, recommended for beginners) ---
+
+1. Open VS Code
+2. Install extension: "Remote - SSH" (by Microsoft)
+3. Press Ctrl+Shift+P
+4. Type: Remote-SSH: Connect to Host
+5. Enter: YOURSTUDENTID@alice.universiteitleiden.nl
+6. Enter password
+7. You now have VS Code running ON the HPC — edit files, open terminal, everything
+
+
+================================================================
+SECTION 3 — FIRST TIME SETUP ON ALICE (run once)
+================================================================
+
+# Step 1: Load Python
+module load Python/3.11.3-GCCcore-12.3.0
+
+# Step 2: Create virtual environment
+python -m venv ~/thesis_venv
+
+# Step 3: Activate it
+source ~/thesis_venv/bin/activate
+
+# Step 4: Copy your thesis folder from Windows to ALICE
+# (run this in Windows PowerShell, NOT on ALICE)
+scp -r D:\thesis_hallucination YOURSTUDENTID@alice.universiteitleiden.nl:~/thesis_hallucination
+
+# Step 5: Install dependencies (run on ALICE after activating venv)
+cd ~/thesis_hallucination
+pip install -r requirements.txt
+
+# Step 6: Install PyTorch with CUDA support (for GPU)
+pip install torch --index-url https://download.pytorch.org/whl/cu118
+pip install transformers accelerate bitsandbytes
+
+# Step 7: Verify GPU is available (only works on a GPU node, not login node)
+python -c "import torch; print('GPU available:', torch.cuda.is_available()); print('GPU name:', torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'N/A')"
+
+
+================================================================
+SECTION 4 — ACTIVATE ENVIRONMENT (run every session)
+================================================================
+
+# Every time you log in, run this first:
+module load Python/3.11.3-GCCcore-12.3.0
+source ~/thesis_venv/bin/activate
+cd ~/thesis_hallucination
+
+
+================================================================
+SECTION 5 — TEST INTERACTIVELY (before submitting big jobs)
+================================================================
+
+# Request an interactive session on a real GPU node (1 hour)
+srun --partition=gpu --gres=gpu:a100:1 --mem=32G --time=01:00:00 --pty bash
+
+# Once on the GPU node, activate environment and test:
+source ~/thesis_venv/bin/activate
+cd ~/thesis_hallucination
+python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"
+# Expected output: True  NVIDIA A100 80GB PCIe
+
+# Quick test run with 3 interviews (to verify no errors):
+python src/run_all.py --models gpt-4o-mini --steps generate --max-interviews 3
+
+
+================================================================
+SECTION 6 — SUBMIT JOBS (for real experiments)
+================================================================
+
+# Make scripts executable (do this once):
+chmod +x jobs/*.sh
+
+# Submit each experiment:
+sbatch jobs/generate_responses.sh     # Run Qwen + Mistral inference
+sbatch jobs/run_rq1.sh               # Run RQ1 hallucination annotation
+sbatch jobs/run_rq2.sh               # Run RQ2 detection methods
+
+# Check your jobs in the queue:
+squeue -u YOURSTUDENTID
+
+# Watch live output of a running job (replace 12345 with your job ID):
+tail -f logs/generate_12345.out
+
+# Check completed job details:
+sacct -j 12345
+
+# Cancel a job if needed:
+scancel 12345
+
+
+================================================================
+SECTION 7 — GET RESULTS BACK TO WINDOWS
+================================================================
+
+# Run this in Windows PowerShell (NOT on ALICE):
+scp -r YOURSTUDENTID@alice.universiteitleiden.nl:~/thesis_hallucination/results D:\thesis_hallucination\results_alice
+
+# Or sync only new files:
+# (install rsync via WSL if needed)
+rsync -avz YOURSTUDENTID@alice.universiteitleiden.nl:~/thesis_hallucination/results/ D:\thesis_hallucination\results_alice/
+
+
+================================================================
+SECTION 8 — USEFUL COMMANDS (DAILY USE)
+================================================================
+
+squeue -u YOURSTUDENTID          # See all your running/pending jobs
+sinfo -p gpu                     # See GPU partition status (free nodes)
+df -h ~                          # Check your disk usage
+module avail Python               # See available Python versions
+scancel --user=YOURSTUDENTID      # Cancel ALL your jobs at once
+sacct --starttime=today           # See all jobs run today
+
+
+================================================================
+SECTION 9 — WHAT EACH SCRIPT DOES
+================================================================
+
+jobs/generate_responses.sh
+  → Runs Qwen2.5-7B and Mistral-Small-24B on GPU
+  → Generates AI answers for all interviews
+  → Uses: 1x A100 80GB, 64GB RAM, 8 cores, up to 6 hours
+
+jobs/run_rq1.sh
+  → Runs RQ1 hallucination annotation (GPT-4o-mini as evaluator)
+  → No GPU needed — uses CPU partition (saves GPU time)
+  → Uses: CPU node, 16GB RAM, 4 cores, up to 4 hours
+
+jobs/run_rq2.sh
+  → Runs RQ2 detection methods (MiniCheck, SelfCheckGPT, RAGAS)
+  → GPU needed for MiniCheck and SelfCheckGPT
+  → Uses: 1x A100 80GB, 32GB RAM, 4 cores, up to 4 hours
+
+
+================================================================
+SECTION 10 — IF SOMETHING GOES WRONG
+================================================================
+
+"Permission denied" when connecting:
+  → Check your student ID and password
+  → Make sure you have requested access first (see Section 1)
+
+"Invalid partition" or "GPU not found":
+  → You may not have access to gpu partition yet
+  → Email HPC support (see Section 1)
+
+Job fails immediately (exit code 1):
+  → Check the error log: cat logs/generate_*.err
+  → Most common cause: forgot to activate venv in the script
+
+"CUDA not available" error:
+  → You ran the script on a login node, not a GPU node
+  → Always use sbatch or srun for GPU work
+
+Out of memory:
+  → Reduce batch size in your Python script
+  → Or request 2x GPUs: --gres=gpu:a100:2
+
+================================================================
+END OF REFERENCE GUIDE
+================================================================

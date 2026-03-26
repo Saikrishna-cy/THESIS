@@ -3,16 +3,16 @@ Master Orchestrator
 ====================
 Runs the full hallucination research pipeline for one or more models.
 
-6-Model Lineup:
-  API models (no GPU): gpt-4o-mini, mistral
-  HuggingFace (ALICE A100): qwen, llama, geitje, aya23
+7-Model Lineup:
+  API models (no GPU): gpt-4o-mini
+  HuggingFace (ALICE A100): mistral, qwen, qwen14b, geitje, aya23, mixtral
 
 Usage examples:
-  # Full pipeline, all 6 models:
-  python experiments/01_pipeline/run_all.py --models gpt-4o-mini,mistral,qwen,llama,geitje,aya23 --steps all
+  # Full pipeline, all 7 models:
+  python experiments/01_pipeline/run_all.py --models gpt-4o-mini,mistral,qwen,qwen14b,geitje,aya23,mixtral --steps all
 
   # API models only (no GPU needed):
-  python experiments/01_pipeline/run_all.py --models gpt-4o-mini,mistral --steps all
+  python experiments/01_pipeline/run_all.py --models gpt-4o-mini --steps all
 
   # Generate only, limit to 5 interviews for testing:
   python experiments/01_pipeline/run_all.py --models gpt-4o-mini --steps generate --max-interviews 5
@@ -22,9 +22,13 @@ Usage examples:
 
   # Cross-model comparison only:
   python experiments/01_pipeline/run_all.py --steps compare
+
+  # Use vLLM backend for 2-4x speedup on ALICE:
+  python experiments/01_pipeline/run_all.py --models geitje --steps generate --inference vllm
 """
 
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -50,7 +54,7 @@ DEFAULT_DATA_SOURCES = [
     str(_BASE / "data" / "synthetic" / "supbase_dutch_synthetic.csv"),
 ]
 
-DEFAULT_MODELS   = ["gpt-4o-mini", "mistral", "qwen", "llama", "geitje", "aya23"]
+DEFAULT_MODELS   = ["gpt-4o-mini", "mistral", "qwen", "qwen14b", "geitje", "aya23", "mixtral"]
 DEFAULT_RESULTS  = str(_BASE / "results")
 
 
@@ -71,11 +75,15 @@ def _header(text: str):
 # ── pipeline steps ───────────────────────────────────────────────────────────
 
 def step_generate(models, data_sources, max_interviews, results_base,
-                  selfcheck_samples=5):
+                  selfcheck_samples=5, inference_backend="transformers"):
     """Step 1 — generate RAG responses for each model."""
     # _HERE (experiments/01_pipeline/) is on sys.path from module init above
     from data_loader import merge_csv_sources, prepare_all_samples
     from rag_pipeline import generate_all_responses
+
+    # Set vLLM environment variable if requested
+    if inference_backend == "vllm":
+        os.environ["USE_VLLM"] = "1"
 
     _header("STEP: GENERATE RAG RESPONSES")
 
@@ -198,7 +206,7 @@ def main():
     parser.add_argument(
         "--models",
         default=",".join(DEFAULT_MODELS),
-        help="Comma-separated model names (default: gpt-4o-mini,mistral,qwen,llama,geitje,aya23)",
+        help="Comma-separated model names (default: gpt-4o-mini,mistral,qwen,qwen14b,geitje,aya23,mixtral)",
     )
     parser.add_argument(
         "--data-sources",
@@ -228,6 +236,12 @@ def main():
         default=5,
         help="Number of SelfCheckGPT samples per response (default: 5)",
     )
+    parser.add_argument(
+        "--inference",
+        default="transformers",
+        choices=["transformers", "vllm"],
+        help="Inference backend (default: transformers). Use vllm for 2-4x speedup on ALICE.",
+    )
 
     args = parser.parse_args()
 
@@ -248,6 +262,7 @@ def main():
     print(f"  Max interviews: {args.max_interviews or 'no limit'}")
     print(f"  Steps        : {steps}")
     print(f"  Results base : {args.results_base}")
+    print(f"  Inference    : {args.inference}")
 
     if "generate" in steps:
         step_generate(
@@ -255,6 +270,7 @@ def main():
             max_interviews=args.max_interviews,
             results_base=args.results_base,
             selfcheck_samples=args.selfcheck_samples,
+            inference_backend=args.inference,
         )
 
     if "rq1" in steps:

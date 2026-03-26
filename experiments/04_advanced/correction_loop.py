@@ -4,32 +4,38 @@ Novel: Detect hallucination → regenerate with error-aware prompt → measure i
 PURPOSE:
   Takes hallucinated responses, builds a correction prompt citing the specific
   hallucination types found, asks GPT-4o-mini to regenerate, then re-annotates.
-  Measures: does one correction pass reduce hallucination rate?
+  Measures: does iterative correction (max 2 rounds) reduce hallucination rate?
 
   Most hallucination papers only DETECT. This adds a CORRECTION mechanism —
   a much stronger IEEE contribution moving from "diagnostic" to "therapeutic."
 
 HOW TO RUN:
-  python D:\\RAG_THESIS\\advanced\\correction_loop.py
+  python experiments/04_advanced/correction_loop.py
 
 PREREQUISITES:
   pip install openai
-  Set OPENAI_API_KEY in D:\\thesis_hallucination\\.env or environment
-  thesis_hallucination results must exist (01 and 02 JSON files for gpt-4o-mini)
+  Set OPENAI_API_KEY in .env or environment
+  thesis pipeline results must exist (01 and 02 JSON files for gpt-4o-mini)
 
 OUTPUT:
-  - Console: before/after hallucination rates
-  - D:\\RAG_THESIS\\output\\correction_results.json
+  - Console: before/after hallucination rates per round
+  - results/correction_loop/correction_results.json
 
-ESTIMATED COST: ~$0.50-2.00 in OpenAI API calls (30-60 responses × 2 calls each)
-ESTIMATED TIME: 10-20 minutes
+ESTIMATED COST: ~$1.00-4.00 in OpenAI API calls (30-60 responses × up to 4 calls each)
+ESTIMATED TIME: 15-30 minutes
 
 USE IN THESIS (Section 5.W — Hallucination Correction Loop):
-  "A single-pass correction loop reduces hallucination rate from X% to Y% (p=Z).
-  The largest reductions are observed for EVIDENT_CONFLICT (−A pp) and
+  "An iterative correction loop (max 2 rounds) reduces hallucination rate from X% to Y%
+  (p=Z). The largest reductions are observed for EVIDENT_CONFLICT (−A pp) and
   BASELESS_INFO (−B pp) hallucinations, which are most amenable to correction
   by explicit error identification. SENTIMENT_MISREPRESENTATION shows the
-  smallest reduction (−C pp), consistent with its dependence on implicit inference."
+  smallest reduction (−C pp), consistent with its dependence on implicit inference.
+  Second-round corrections yield diminishing returns (−D pp incremental improvement),
+  consistent with Madaan et al. 2023 self-refine convergence behaviour."
+
+PAPER BACKING:
+  - Madaan et al. 2023 (arXiv:2303.17651) — Self-Refine: Iterative Refinement
+  - Shinn et al. 2023 (arXiv:2303.11366) — Reflexion: Verbal Reinforcement Learning
 """
 
 import json
@@ -38,8 +44,17 @@ import sys
 import time
 from pathlib import Path
 
-# Load .env
-_ENV = Path(r"D:\thesis_hallucination\.env")
+# ── dynamic path resolution ──────────────────────────────────────────────────
+_PROJECT_ROOT = Path(__file__).parent.parent.parent   # THESIS/
+RESULTS_DIR   = _PROJECT_ROOT / "results"
+OUTPUT_DIR    = _PROJECT_ROOT / "results" / "correction_loop"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+OUTPUT_JSON  = OUTPUT_DIR / "correction_results.json"
+RESUME_FILE  = OUTPUT_DIR / "correction_results_partial.json"
+
+# Load .env from project root if it exists
+_ENV = _PROJECT_ROOT / ".env"
 if _ENV.exists():
     for line in _ENV.read_text(encoding="utf-8-sig").splitlines():
         line = line.strip()
@@ -48,20 +63,22 @@ if _ENV.exists():
             os.environ.setdefault(k.strip(), v.strip())
 
 try:
+    from dotenv import load_dotenv
+    load_dotenv(_ENV, override=True)
+except ImportError:
+    pass
+
+try:
     import openai
     client = openai.OpenAI()
 except ImportError:
     print("ERROR: pip install openai")
     sys.exit(1)
 
-OUTPUT_DIR   = Path(r"D:\RAG_THESIS\output")
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-OUTPUT_JSON  = OUTPUT_DIR / "correction_results.json"
-RESUME_FILE  = OUTPUT_DIR / "correction_results_partial.json"
-
-RESULTS_DIR  = Path(r"D:\thesis_hallucination\results\gpt-4o-mini")
-RESPONSES_FILE   = RESULTS_DIR / "01_rag_responses.json"
-ANNOTATIONS_FILE = RESULTS_DIR / "02_rq1_annotations.json"
+# Default model dir (gpt-4o-mini)
+_DEFAULT_MODEL_DIR = RESULTS_DIR / "gpt-4o-mini"
+RESPONSES_FILE   = _DEFAULT_MODEL_DIR / "01_rag_responses.json"
+ANNOTATIONS_FILE = _DEFAULT_MODEL_DIR / "02_rq1_annotations.json"
 
 # ── correction prompt template ───────────────────────────────────────────────
 CORRECTION_PROMPT = """\
@@ -155,9 +172,9 @@ def build_error_summary(hallucinations: list) -> str:
     return "\n".join(lines)
 
 
-def main():
+def main(max_rounds: int = 2):
     print("=" * 60)
-    print("HALLUCINATION CORRECTION LOOP")
+    print("HALLUCINATION CORRECTION LOOP (iterative, max rounds: {})".format(max_rounds))
     print("=" * 60)
 
     # ── load data ────────────────────────────────────────────────────────────
@@ -173,7 +190,7 @@ def main():
     with open(ANNOTATIONS_FILE, encoding="utf-8") as f:
         annotations = json.load(f)
 
-    ann_idx = {(a.get("interview_id"), a.get("query_type")): a for a in annotations}
+    ann_idx  = {(a.get("interview_id"), a.get("query_type")): a for a in annotations}
     resp_idx = {(r.get("interview_id"), r.get("query_type")): r for r in responses}
 
     # Select only hallucinated responses
@@ -194,7 +211,7 @@ def main():
         done_keys = {(r["interview_id"], r["query_type"]) for r in results}
         print(f"Resuming: {len(done_keys)} already processed.\n")
 
-    # ── correction loop ──────────────────────────────────────────────────────
+    # ── iterative correction loop ────────────────────────────────────────────
     for i, ann in enumerate(hallucinated):
         key = (ann.get("interview_id"), ann.get("query_type"))
         if key in done_keys:
@@ -207,58 +224,95 @@ def main():
         print(f"[{i+1}/{len(hallucinated)}] {ann['query_type']} — {ann['interview_id']}")
         print(f"  Original: {ann['overall_label']} | {len(ann.get('hallucinations', []))} issues")
 
-        error_summary = build_error_summary(ann.get("hallucinations", []))
+        # Track state across rounds
+        current_response   = ann.get("rag_response", r.get("rag_response", ""))
+        current_annotation = ann
+        per_round_faithfulness = []
 
-        # Step 1: Generate corrected response
-        try:
-            correction_prompt = CORRECTION_PROMPT.format(
-                error_summary=error_summary,
-                transcript=r.get("transcript_text", "")[:4000],
-                context=r.get("context", "")[:2000],
-                query=r.get("query", ""),
-            )
-            correction_resp = client.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[{"role": "user", "content": correction_prompt}],
-                temperature=0.1,
-                max_tokens=600,
-            )
-            corrected_response = correction_resp.choices[0].message.content.strip()
-            print(f"  Corrected response generated ({len(corrected_response)} chars)")
-            time.sleep(0.5)
-        except Exception as e:
-            print(f"  ERROR generating correction: {e}")
-            continue
+        for round_num in range(1, max_rounds + 1):
+            print(f"  -- Round {round_num}/{max_rounds} --")
 
-        # Step 2: Re-annotate corrected response
-        try:
-            new_ann = annotate(
-                transcript=r.get("transcript_text", ""),
-                query=r.get("query", ""),
-                response=corrected_response,
-            )
-            new_label = new_ann.get("overall_label", "UNKNOWN")
-            new_score = new_ann.get("faithfulness_score", 0)
-            new_n_hall = len(new_ann.get("hallucinations", []))
-            print(f"  After correction: {new_label} | {new_n_hall} issues | faith={new_score:.2f}")
-            time.sleep(0.5)
-        except Exception as e:
-            print(f"  ERROR re-annotating: {e}")
-            continue
+            # Early exit: if already FAITHFUL, no need for further rounds
+            overall_label = current_annotation.get("overall_label", "HALLUCINATED")
+            if overall_label == "FAITHFUL":
+                print(f"  Early exit: FAITHFUL after round {round_num - 1}")
+                break
+
+            error_summary = build_error_summary(current_annotation.get("hallucinations", []))
+
+            # Step A: Generate corrected response
+            try:
+                correction_prompt = CORRECTION_PROMPT.format(
+                    error_summary=error_summary,
+                    transcript=r.get("transcript_text", "")[:4000],
+                    context=r.get("context", "")[:2000],
+                    query=r.get("query", ""),
+                )
+                correction_resp = client.chat.completions.create(
+                    model="gpt-4o-mini",
+                    messages=[{"role": "user", "content": correction_prompt}],
+                    temperature=0.1,
+                    max_tokens=600,
+                )
+                corrected_response = correction_resp.choices[0].message.content.strip()
+                print(f"  Round {round_num} corrected response: {len(corrected_response)} chars")
+                time.sleep(0.5)
+            except Exception as e:
+                print(f"  ERROR generating correction (round {round_num}): {e}")
+                break
+
+            # Step B: Re-annotate corrected response
+            try:
+                new_ann = annotate(
+                    transcript=r.get("transcript_text", ""),
+                    query=r.get("query", ""),
+                    response=corrected_response,
+                )
+                new_label = new_ann.get("overall_label", "UNKNOWN")
+                new_score = new_ann.get("faithfulness_score", 0)
+                new_n_hall = len(new_ann.get("hallucinations", []))
+                print(f"  Round {round_num} result: {new_label} | {new_n_hall} issues | faith={new_score:.2f}")
+                time.sleep(0.5)
+            except Exception as e:
+                print(f"  ERROR re-annotating (round {round_num}): {e}")
+                break
+
+            per_round_faithfulness.append({
+                "round": round_num,
+                "label": new_label,
+                "faithfulness_score": new_score,
+                "n_hallucinations": new_n_hall,
+            })
+
+            # Update current state for next round
+            current_response   = corrected_response
+            current_annotation = new_ann
+
+            # Early exit if FAITHFUL achieved
+            if new_label == "FAITHFUL":
+                print(f"  FAITHFUL achieved at round {round_num}. Stopping early.")
+                break
+
+        # Final state after all rounds
+        final_label  = current_annotation.get("overall_label", "UNKNOWN")
+        final_score  = current_annotation.get("faithfulness_score", 0)
+        final_n_hall = len(current_annotation.get("hallucinations", []))
 
         results.append({
-            "interview_id":        ann["interview_id"],
-            "query_type":          ann["query_type"],
-            "query":               r.get("query", ""),
-            "original_label":      ann["overall_label"],
-            "original_n_issues":   len(ann.get("hallucinations", [])),
-            "original_types":      ann.get("hallucination_types", []),
-            "original_faithfulness": ann.get("faithfulness_score", -1),
-            "corrected_response":  corrected_response,
-            "corrected_label":     new_label,
-            "corrected_n_issues":  new_n_hall,
-            "corrected_faithfulness": new_score,
-            "improved":            new_label == "FAITHFUL" and ann["overall_label"] == "HALLUCINATED",
+            "interview_id":            ann["interview_id"],
+            "query_type":              ann["query_type"],
+            "query":                   r.get("query", ""),
+            "original_label":          ann["overall_label"],
+            "original_n_issues":       len(ann.get("hallucinations", [])),
+            "original_types":          ann.get("hallucination_types", []),
+            "original_faithfulness":   ann.get("faithfulness_score", -1),
+            "corrected_response":      current_response,
+            "corrected_label":         final_label,
+            "corrected_n_issues":      final_n_hall,
+            "corrected_faithfulness":  final_score,
+            "rounds_used":             len(per_round_faithfulness),
+            "per_round_faithfulness":  per_round_faithfulness,
+            "improved":                final_label == "FAITHFUL" and ann["overall_label"] == "HALLUCINATED",
         })
         done_keys.add(key)
 
@@ -305,7 +359,7 @@ def main():
         print(f"  {t:<32} {rate:.0%}  ({counts['improved']}/{counts['total']})")
 
     print(f"\nUSE IN THESIS:")
-    print(f'  "A single-pass correction loop reduces hallucination rate from 100%')
+    print(f'  "An iterative correction loop (max {max_rounds} rounds) reduces hallucination rate from 100%')
     print(f"  to {after_rate:.1%} among hallucinated responses (n={n}), with an average")
     print(f"  faithfulness gain of +{avg_after_faith-avg_before_faith:.3f} points.")
     print(f"  {n_improved}/{n} responses ({n_improved/n:.0%}) were fully corrected to FAITHFUL.")
@@ -314,6 +368,7 @@ def main():
 
     # ── save final results ───────────────────────────────────────────────────
     final = {
+        "max_rounds": max_rounds,
         "n_corrected": n,
         "before_hallucination_rate": 1.0,
         "after_hallucination_rate": round(after_rate, 4),

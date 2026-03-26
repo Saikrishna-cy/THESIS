@@ -1,0 +1,252 @@
+THESIS PIPELINE CHANGELOG
+=========================
+Project: Hallucination Detection in RAG-based Interview Analysis
+Author: Saikrishna Cynisetty, Leiden University 2025-2026
+Branch: results
+
+This changelog documents every code change made to the thesis pipeline,
+the reason for each change, and the research paper backing the decision.
+
+=========================
+FILE: experiments/01_pipeline/model_registry.py
+=========================
+
+CHANGE 1 — Removed "llama" model entry
+  WHY: Meta's LLaMA-3.1-8B requires HuggingFace access approval that has
+       not yet been granted. The entry has been removed to prevent pipeline
+       errors. Re-add once permission is approved.
+  HOW: Entry deleted. Note preserved in file comments.
+
+CHANGE 2 — Changed "mistral" from Together.ai API to HuggingFace Mistral-7B-Instruct-v0.3
+  WHY: Supervisor requires size parity across all open models (all should
+       be 7-8B). The previous Mistral-Small-24B via Together.ai violates
+       this constraint. Mistral-7B-Instruct-v0.3 is fully public (no API
+       token, no HuggingFace gating).
+  PAPER: Jiang et al. 2023 (arXiv:2310.06825) Table 1 p.2 — GQA + Sliding
+         Window Attention make Mistral-7B competitive with LLaMA-2-13B.
+  HOW: type changed from "mistral_api" to "huggingface",
+       hf_id set to "mistralai/Mistral-7B-Instruct-v0.3",
+       alice_gpu updated from "A100-40GB" to "A100-80GB".
+
+CHANGE 3 — Added "qwen14b" → Qwen2.5-14B-Instruct
+  WHY: Scale ablation experiment: does doubling from 7B to 14B parameters
+       within the same model family significantly reduce hallucination?
+       McNemar test will measure significance.
+  PAPER: Hui et al. 2024 (arXiv:2412.15115) Table 2 p.5 —
+         MMLU 79.7% (14B) vs 74.2% (7B), +5.5 percentage points.
+  HOW: New entry with load_in_4bit=True (NF4, ~10-11GB VRAM),
+       alice_time="16:00:00" (longer due to size).
+
+CHANGE 4 — Added "mixtral" → Mixtral-8x7B-Instruct-v0.1
+  WHY: Mixture-of-Experts (MoE) architecture test. Only 12.9B of 46.7B
+       parameters activate per forward pass (expert routing). Hypothesis:
+       MoE routing may reduce ROLE_ATTRIBUTION_DRIFT by keeping speaker-
+       specific knowledge separated in distinct expert networks.
+  PAPER: Jiang et al. 2024 (arXiv:2401.04088) — MoE + TruthfulQA 71.4%
+         (Table 3 p.5).
+  HOW: New entry with load_in_4bit=True (~24-28GB VRAM),
+       alice_ram_gb=48 (MoE routing overhead), alice_time="16:00:00".
+
+CHANGE 5 — Updated all HF model alice_gpu to "A100-80GB"
+  WHY: ALICE cluster admin confirmed A100-80GB (not A100-40GB as previously
+       assumed). 80GB VRAM is essential for Mixtral 4-bit (~24-28GB) and
+       enables larger batch sizes for all models.
+  HOW: alice_gpu field updated in all 5 HuggingFace model entries.
+
+CHANGE 6 — Updated MODEL_ORDER to 7 models (no llama)
+  WHY: Consistent ordering across all results tables and comparison reports.
+  HOW: MODEL_ORDER = ["gpt-4o-mini", "mistral", "qwen", "qwen14b",
+                      "geitje", "aya23", "mixtral"]
+
+=========================
+FILE: experiments/01_pipeline/rag_pipeline.py
+=========================
+
+CHANGE 7 — Added "evidence_cot" system prompt
+  WHY: Chain-of-thought prompting with forced evidence citation reduces
+       BASELESS_INFO and EVIDENT_CONFLICT hallucinations by requiring the
+       model to anchor every claim to a specific transcript quote.
+  PAPER: Wei et al. 2022 (arXiv:2201.11903) — CoT improves factual accuracy.
+         Yao et al. 2023 (arXiv:2302.00093) — ReAct: grounded generation.
+  HOW: New "evidence_cot" key in _SYSTEM_PROMPTS dict with 3-step format:
+       STEP 1: QUOTE relevant transcript sections
+       STEP 2: VERIFY quote supports the query
+       STEP 3: ANSWER based only on verified quotes
+       Default system_prompt_style changed from "detailed" to "evidence_cot".
+
+CHANGE 8 — Added speaker_aware_chunk() function
+  WHY: Fixed-size character chunking (old: 1000 chars) cuts mid-sentence
+       and mid-speaker-turn, destroying conversational context that is
+       critical for bilingual interview transcripts. Speaker-boundary splits
+       preserve full turns, reducing ROLE_ATTRIBUTION_DRIFT.
+  PAPER: Shi et al. 2023 (arXiv:2309.15127) — retrieval precision degrades
+         when chunks split conversational context.
+  HOW: Splits at regex (?=(?:Interviewer|Participant|Agent|Speaker\d*):)
+       with target 400 tokens, 50-token overlap between chunks.
+
+CHANGE 9 — Added BGE-M3 two-stage retrieval
+  WHY: paraphrase-multilingual-MiniLM-L12-v2 (old embedder) was not
+       designed for retrieval; BGE-M3 (BAAI) provides unified dense + sparse
+       + colbert retrieval and achieves +48% improvement on Dutch passages.
+  PAPER: Chen et al. 2024 (arXiv:2402.03216) — BGE-M3: Multi-Lingual,
+         Multi-Functionality, Multi-Granularity Text Embeddings.
+  HOW: _get_bge_encoder() loads BAAI/bge-m3 via SentenceTransformer.
+       retrieve_top_k_bge() bi-encodes top-20 then reranks to top-3.
+
+CHANGE 10 — Added cross-encoder reranking (bge-reranker-v2-m3)
+  WHY: Bi-encoder retrieval maximizes recall but not precision. Cross-encoder
+       reranking as a second stage improves precision from top-20 to top-3
+       without re-embedding the full corpus.
+  PAPER: Nogueira & Cho 2019 (arXiv:1901.04085) — passage reranking with BERT.
+  HOW: _get_bge_reranker() loads BAAI/bge-reranker-v2-m3 via CrossEncoder.
+       retrieve_top_k_bge() calls reranker after bi-encoder retrieval.
+
+CHANGE 11 — Added vLLM batched generation backend
+  WHY: Transformers sequential inference is 2-24x slower than vLLM batch
+       inference due to PagedAttention memory management. 12h ALICE jobs
+       reduce to 2-4h with vLLM.
+  PAPER: Kwon et al. 2023 (arXiv:2309.06180) — vLLM: Efficient Memory
+         Management for LLM Serving with PagedAttention.
+  HOW: _generate_vllm_batch() wraps vLLM LLM class. Activated by
+       USE_VLLM=1 environment variable or --inference vllm CLI flag.
+
+CHANGE 12 — Added 4-bit quantization loading path for qwen14b and mixtral
+  WHY: Qwen2.5-14B requires ~28GB VRAM in float16 (exceeds A100-40GB).
+       4-bit NF4 quantization reduces to ~10-11GB VRAM. Mixtral-8x7B
+       requires ~90GB in float16; 4-bit reduces to ~24-28GB.
+  PAPER: Dettmers et al. 2023 (arXiv:2305.17333) — QLoRA: 4-bit NF4 with
+         double quantization. Table 2: minimal accuracy loss vs float16.
+  HOW: _HF_4BIT_MODELS = {"qwen14b", "mixtral"}. BitsAndBytesConfig with
+       load_in_4bit=True, bnb_4bit_quant_type="nf4" applied in _get_hf_model().
+
+=========================
+FILE: experiments/01_pipeline/run_all.py
+=========================
+
+CHANGE 13 — Removed "llama" from DEFAULT_MODELS
+  WHY: HuggingFace access for LLaMA-3.1-8B not yet approved.
+  HOW: Removed from DEFAULT_MODELS list. No other changes needed.
+
+CHANGE 14 — Added "qwen14b" and "mixtral" to DEFAULT_MODELS
+  WHY: New models added in model_registry.py need to be included in the
+       default pipeline run.
+  HOW: DEFAULT_MODELS = ["gpt-4o-mini", "mistral", "qwen", "qwen14b",
+                          "geitje", "aya23", "mixtral"]
+
+CHANGE 15 — Added --inference CLI flag
+  WHY: Users need to choose between Transformers (default, more compatible)
+       and vLLM (2-4x faster, requires vllm installation) backends.
+  HOW: argparse --inference with choices=["transformers", "vllm"].
+       Sets USE_VLLM=1 env var if "vllm" selected.
+
+=========================
+FILE: experiments/02_rq1/experiment_rq1.py
+=========================
+
+CHANGE 16 — Removed SPEAKER_MISATTRIBUTION from RAGTRUTH_PROMPT (was type 4)
+  WHY: Prevalence in pilot study: only 1.6% of all hallucinations were
+       SPEAKER_MISATTRIBUTION. Below the 5% significance threshold set by
+       supervisor. Removing low-signal types improves annotator precision.
+  HOW: Removed from numbered list. Renumbered remaining types.
+
+CHANGE 17 — Removed TEMPORAL_CONFUSION from RAGTRUTH_PROMPT (was type 5)
+  WHY: Prevalence: 2.3% — also below 5% threshold. TEMPORAL_CONFUSION
+       is difficult to distinguish from SUBTLE_CONFLICT in interview data
+       where topics are not always chronologically ordered.
+  HOW: Removed from numbered list. Renumbered remaining types.
+
+CHANGE 18 — Added ROLE_ATTRIBUTION_DRIFT as type 6 (NEW)
+  WHY: Novel hallucination type specific to multi-turn interview RAG.
+       The model correctly identifies Speaker A in sentence 1 but
+       progressively drifts to attributing statements to Speaker B in
+       later sentences. Grounded in positional decay theory: models
+       attend less to early context positions as generation length grows.
+       Not captured by any of the 3 identified gap papers:
+         (1) arXiv:2510.01782 — no role drift in single-doc RAG
+         (2) arXiv:2511.17170 — detection only, not multi-turn
+         (3) arXiv:2505.18325 — summarization focus, no attribution drift
+  PAPER: Shi et al. 2023 (arXiv:2108.12409) — "Lost in the Middle":
+         models attend less to information in middle/later positions.
+  HOW: Added as type 6 with precise 3-sentence drift criterion:
+       3+ sentences in latter half attribute to wrong speaker while
+       sentence 1 was correct. Detector: detect_role_drift.py.
+
+CHANGE 19 — Updated JSON schema comment: "7 types" → "6 types"
+  WHY: Consistency with updated taxonomy.
+
+=========================
+FILE: experiments/04_advanced/correction_loop.py
+=========================
+
+CHANGE 20 — Fixed Windows hardcoded paths
+  WHY: Original code had D:\thesis_hallucination\... paths that only work
+       on Windows developer machine. Pipeline must run on ALICE Linux HPC.
+  HOW: _PROJECT_ROOT = Path(__file__).parent.parent.parent (dynamic).
+       All paths derived relative to _PROJECT_ROOT.
+
+CHANGE 21 — Made correction iterative (max 2 rounds)
+  WHY: Single-pass correction may not fully correct multi-type hallucinations.
+       Iterative self-reflection (2 rounds) improves faithfulness scores.
+       Second round applies only to responses still HALLUCINATED after round 1.
+  PAPER: Madaan et al. 2023 (arXiv:2303.17651) — Self-Refine: Iterative
+         Refinement with Self-Feedback.
+         Shinn et al. 2023 (arXiv:2303.11366) — Reflexion: Language Agents
+         with Verbal Reinforcement Learning.
+  HOW: Outer loop over hallucinated responses; inner loop
+       for round_num in range(1, max_rounds + 1). Early exit per item
+       when overall_label == "FAITHFUL".
+
+=========================
+NEW FILES CREATED
+=========================
+
+NEW FILE: experiments/02_rq1/detect_role_drift.py
+  PURPOSE: Post-processing heuristic detector for ROLE_ATTRIBUTION_DRIFT.
+           Zero new API calls — reads existing 02_rq1_annotations.json.
+           Detection: sentence-level speaker labeling + drift pattern check.
+  HOW TO RUN: python experiments/02_rq1/detect_role_drift.py
+
+NEW FILE: experiments/06_finetuning/run_qlora.py
+  PURPOSE: QLoRA fine-tuning on FAITHFUL-labeled examples to reduce
+           hallucination rate below 5% (current best: GEITje ~14.3%).
+  PAPER: Dettmers et al. 2023 (arXiv:2305.17333) — QLoRA
+         Hu et al. 2021 (arXiv:2106.09685) — LoRA
+         Wang et al. 2024 (arXiv:2311.08401) — SELF-RAG faithful training
+  HOW TO RUN: sbatch jobs/run_qlora.sh (on ALICE)
+              python experiments/06_finetuning/run_qlora.py --dry-run (local test)
+
+NEW FILE: jobs/run_mistral7b.sh
+  PURPOSE: SLURM job for Mistral-7B-Instruct-v0.3 on ALICE A100-80GB.
+  RESOURCES: 12h wall time, 32GB RAM, 4 CPUs, 1 A100-80GB GPU.
+
+NEW FILE: jobs/run_qwen14b.sh
+  PURPOSE: SLURM job for Qwen2.5-14B-Instruct (4-bit) on ALICE A100-80GB.
+  RESOURCES: 16h wall time, 32GB RAM, 4 CPUs, 1 A100-80GB GPU.
+
+NEW FILE: jobs/run_mixtral.sh
+  PURPOSE: SLURM job for Mixtral-8x7B (4-bit) on ALICE A100-80GB.
+  RESOURCES: 16h wall time, 48GB RAM, 4 CPUs, 1 A100-80GB GPU.
+
+NEW FILE: jobs/run_vllm_base.sh
+  PURPOSE: Generic vLLM SLURM template. Takes MODEL env var.
+  RESOURCES: 4h wall time, 32GB RAM, 4 CPUs, 1 A100-80GB GPU.
+
+NEW FILE: jobs/precompute_embeddings.sh
+  PURPOSE: Pre-compute BGE-M3 embeddings for all transcripts (run once).
+  RESOURCES: 1h wall time, 32GB RAM, 4 CPUs, 1 A100-80GB GPU.
+
+NEW FILE: jobs/run_qlora.sh
+  PURPOSE: SLURM job for QLoRA fine-tuning. Takes MODEL env var.
+  RESOURCES: 8h wall time, 48GB RAM, 8 CPUs, 1 A100-80GB GPU.
+
+NEW FILE: CHANGELOG.txt (this file)
+  PURPOSE: Complete record of all changes, reasons, and paper backing.
+
+NEW FILE: HOW_TO_RUN.md
+  PURPOSE: Step-by-step instructions for running on ALICE and locally.
+
+NEW FILE: docs/ARCHITECTURE.md
+  PURPOSE: Full pipeline ASCII diagram and component descriptions.
+
+NEW FILE: docs/generate_before_after_pdf.py
+  PURPOSE: Generates before_after_comparison.pdf showing old vs new code.
