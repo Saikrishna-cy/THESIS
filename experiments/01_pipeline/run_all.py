@@ -114,7 +114,7 @@ def step_generate(models, data_sources, max_interviews, results_base,
         )
 
 
-def step_rq1(models, results_base):
+def step_rq1(models, results_base, judge_model="gpt-4o-mini"):
     """Step 2 — RQ1 hallucination taxonomy experiments."""
     sys.path.insert(0, str(_ROOT / "experiments" / "02_rq1"))
     from experiment_rq1 import run_all_rq1
@@ -123,7 +123,7 @@ def step_rq1(models, results_base):
     for model in models:
         rdir = results_dir(model, results_base)
         _header(f"RQ1 — model: {model}")
-        run_all_rq1(results_dir=rdir)
+        run_all_rq1(results_dir=rdir, judge_model=judge_model)
 
 
 def step_rq2(models, results_base):
@@ -242,6 +242,16 @@ def main():
         choices=["transformers", "vllm"],
         help="Inference backend (default: transformers). Use vllm for 2-4x speedup on ALICE.",
     )
+    parser.add_argument(
+        "--judge-model",
+        default="gpt-4o-mini",
+        help=(
+            "OpenAI model used as hallucination judge in RQ1 (default: gpt-4o-mini). "
+            "AUTO-GUARD: if the generating model equals the judge model, automatically "
+            "switches to a fallback judge to prevent self-evaluation bias "
+            "(Zheng et al. 2023, arXiv:2306.05685)."
+        ),
+    )
 
     args = parser.parse_args()
 
@@ -263,6 +273,7 @@ def main():
     print(f"  Steps        : {steps}")
     print(f"  Results base : {args.results_base}")
     print(f"  Inference    : {args.inference}")
+    print(f"  Judge model  : {args.judge_model}")
 
     if "generate" in steps:
         step_generate(
@@ -274,7 +285,7 @@ def main():
         )
 
     if "rq1" in steps:
-        step_rq1(models, args.results_base)
+        step_rq1(models, args.results_base, judge_model=args.judge_model)
 
     if "rq2" in steps:
         step_rq2(models, args.results_base)

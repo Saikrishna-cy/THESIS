@@ -87,11 +87,28 @@ Return JSON:
 }}"""
 
 
-def run_experiment_1(responses: List[Dict], results_dir: str = "results/gpt-4o-mini") -> List[Dict]:
+# ── Judge model auto-guard (avoid self-evaluation bias) ───────────────────────
+# Zheng et al. 2023 (arXiv:2306.05685): LLMs favour their own outputs when used
+# as judge, inflating faithfulness scores by 8-12pp. Rule: judge != generator.
+JUDGE_FALLBACK = {
+    "gpt-4o-mini": "gpt-4o",    # if gpt-4o-mini generates, use gpt-4o as judge
+    "gpt-4o":      "gpt-4o-mini",
+}
+
+
+def run_experiment_1(
+    responses: List[Dict],
+    results_dir: str = "results/gpt-4o-mini",
+    judge_model: str = "gpt-4o-mini",
+) -> List[Dict]:
     """
     Experiment 1: RAGTruth-style annotation.
     For each RAG response, auto-annotate hallucination type, span, severity.
-    Evaluator: GPT-4o-mini (regardless of which model generated the responses).
+
+    judge_model: the OpenAI model used as evaluator.
+    AUTO-GUARD: if the generating model == judge_model (self-evaluation bias),
+    automatically switches to JUDGE_FALLBACK[judge_model] with a printed warning.
+    Paper: Zheng et al. 2023 (arXiv:2306.05685) — LLM-as-a-Judge bias.
     """
     print("=" * 60)
     print("EXPERIMENT 1: RAGTruth Annotation")
@@ -103,9 +120,25 @@ def run_experiment_1(responses: List[Dict], results_dir: str = "results/gpt-4o-m
     out_dir.mkdir(parents=True, exist_ok=True)
     output_path = out_dir / "02_rq1_annotations.json"
 
+    # ── Auto-guard: detect self-evaluation and switch judge ───────────────────
+    valid = [r for r in responses if r.get("rag_response")]
+    rag_model = valid[0].get("rag_model", "unknown") if valid else "unknown"
+    effective_judge = judge_model
+    if rag_model == judge_model:
+        fallback = JUDGE_FALLBACK.get(judge_model)
+        if fallback:
+            print(f"\n⚠  WARNING: generator == judge ('{judge_model}').")
+            print(f"   Self-evaluation bias detected (Zheng et al. 2023, arXiv:2306.05685).")
+            print(f"   Auto-switching judge → '{fallback}' for cross-model evaluation.\n")
+            effective_judge = fallback
+        else:
+            print(f"\n⚠  WARNING: generator == judge ('{judge_model}'). "
+                  f"No fallback defined — self-evaluation bias may apply.\n")
+    else:
+        print(f"   Judge model : {effective_judge} (cross-model, no self-evaluation bias)")
+
     client = openai.OpenAI()
     results = []
-    valid = [r for r in responses if r.get("rag_response")]
 
     # Resume support
     done_keys = set()
@@ -131,7 +164,7 @@ def run_experiment_1(responses: List[Dict], results_dir: str = "results/gpt-4o-m
 
         try:
             resp = client.chat.completions.create(
-                model="gpt-4o-mini",
+                model=effective_judge,
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1,
                 max_tokens=1200,
@@ -145,6 +178,7 @@ def run_experiment_1(responses: List[Dict], results_dir: str = "results/gpt-4o-m
                 "query": r["query"],
                 "query_type": r["query_type"],
                 "rag_model": r.get("rag_model", "unknown"),
+                "judge_model": effective_judge,
                 "rag_response": r["rag_response"],
                 "overall_label": annotation.get("overall_label", "UNKNOWN"),
                 "faithfulness_score": annotation.get("faithfulness_score", -1),
@@ -436,8 +470,12 @@ def run_experiment_3(responses: List[Dict], results_dir: str = "results/gpt-4o-m
 # Run all RQ1 experiments
 # ============================================================
 
-def run_all_rq1(results_dir: str = "results/gpt-4o-mini"):
-    """Run all 3 RQ1 experiments in sequence for the given model's results dir."""
+def run_all_rq1(results_dir: str = "results/gpt-4o-mini", judge_model: str = "gpt-4o-mini"):
+    """Run all 3 RQ1 experiments in sequence for the given model's results dir.
+
+    judge_model: OpenAI model used as the hallucination annotator.
+    Auto-guard ensures judge != generator to prevent self-evaluation bias.
+    """
     input_path = Path(results_dir) / "01_rag_responses.json"
     if not input_path.exists():
         print(f"ERROR: {input_path} not found. Run generate step first.")
@@ -449,7 +487,7 @@ def run_all_rq1(results_dir: str = "results/gpt-4o-mini"):
     model_name = responses[0].get("rag_model", "unknown") if responses else "unknown"
     print(f"\nLoaded {len(responses)} RAG responses (model: {model_name})")
 
-    annotations = run_experiment_1(responses, results_dir=results_dir)
+    annotations = run_experiment_1(responses, results_dir=results_dir, judge_model=judge_model)
     run_experiment_2(annotations, results_dir=results_dir)
     run_experiment_3(responses, results_dir=results_dir)
 

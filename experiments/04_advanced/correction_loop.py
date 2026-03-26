@@ -144,15 +144,36 @@ Return JSON:
 }}"""
 
 
-def annotate(transcript: str, query: str, response: str) -> dict:
-    """Run E1-style annotation on a response."""
+# ── Judge model auto-guard (avoid self-evaluation bias) ───────────────────────
+# Zheng et al. 2023 (arXiv:2306.05685): models favour their own outputs as judge.
+# Rule: judge model must never be the same as the generating model.
+JUDGE_FALLBACK = {
+    "gpt-4o-mini": "gpt-4o",
+    "gpt-4o":      "gpt-4o-mini",
+}
+
+
+def annotate(transcript: str, query: str, response: str,
+             judge_model: str = "gpt-4o-mini", rag_model: str = "") -> dict:
+    """Run E1-style annotation on a response.
+
+    judge_model: OpenAI model used as evaluator.
+    rag_model:   model that generated the response (used for self-evaluation guard).
+    AUTO-GUARD: if rag_model == judge_model, switches to JUDGE_FALLBACK to prevent
+    self-evaluation bias (Zheng et al. 2023, arXiv:2306.05685).
+    """
+    effective_judge = judge_model
+    if rag_model and rag_model == judge_model:
+        effective_judge = JUDGE_FALLBACK.get(judge_model, judge_model)
+        print(f"  [auto-guard] judge switched {judge_model} → {effective_judge} (self-eval bias)")
+
     prompt = ANNOTATION_PROMPT.format(
         transcript=transcript[:3000],
         query=query,
         response=response,
     )
     resp = client.chat.completions.create(
-        model="gpt-4o-mini",
+        model=effective_judge,
         messages=[{"role": "user", "content": prompt}],
         temperature=0.1,
         max_tokens=800,

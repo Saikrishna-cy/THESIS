@@ -7,6 +7,15 @@ examples from the hallucination detection pipeline using QLoRA.
 GOAL: Reduce hallucination rate below 5% via supervised fine-tuning on
       only the subset of model outputs that were annotated as FAITHFUL.
 
+WHY GEITje AS DEFAULT TARGET:
+  GEITje has the HIGHEST measured hallucination rate (65.9%, 2048/3108 responses)
+  in the full dataset — far worse than Aya-23 (27.3%), GPT-4o-mini (21.5%),
+  Qwen (20.2%), or Mistral (17.5%). It is also the ONLY Dutch-specialist model,
+  making it the most important and most impactful fine-tuning target for this thesis.
+  Thesis defence: "We target GEITje because it has the worst performance (65.9%)
+  — showing QLoRA recovers a highly-hallucinating Dutch model is the strongest
+  demonstration of the fine-tuning approach."
+
 ARCHITECTURE:
   - Base model: any 7-8B HuggingFace model (default: geitje)
   - LoRA rank: 16, applied to Q/K/V/O projection layers
