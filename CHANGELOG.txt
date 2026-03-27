@@ -250,3 +250,76 @@ NEW FILE: docs/ARCHITECTURE.md
 
 NEW FILE: docs/generate_before_after_pdf.py
   PURPOSE: Generates before_after_comparison.pdf showing old vs new code.
+
+=========================
+v3 ADDITIONS — March 2026
+(Bram Vanroy communication + controlled dataset)
+=========================
+
+CHANGE 22 — Added "mistral_base" → Mistral-7B-v0.1 (raw base, no fine-tuning)
+  WHY: Bram Vanroy (GEITje author, personal communication March 2026) advised
+       that comparing GEITje (2023-era model) to modern Qwen2.5/Mixtral is not
+       a fair capability comparison. The correct novel contribution is a
+       training-stage chain: how does hallucination rate change at each step
+       of the fine-tuning pipeline?
+       mistral_base serves as chain STEP 1: baseline before any fine-tuning.
+  PAPER: Jiang et al. 2023 (arXiv:2310.06825) — original Mistral-7B architecture
+         Bai et al. 2022 (arXiv:2204.05862) — RLHF training stages
+  HOW: New entry in MODELS dict: hf_id="mistralai/Mistral-7B-v0.1",
+       load_in_4bit=False, alice_ram_gb=32, alice_time="12:00:00".
+
+CHANGE 23 — Added "geitje_sft" → GEITje-7B-ultra-sft (SFT checkpoint before DPO)
+  WHY: Chain STEP 2: Dutch supervised fine-tuning applied, but NOT yet DPO.
+       Measures whether SFT alone changes hallucination rate vs mistral_base.
+       Research question: does the Dutch SFT corpus introduce hallucination,
+       or does it come from the DPO alignment stage?
+  PAPER: Ouyang et al. 2022 (arXiv:2203.02155) — SFT vs RLHF stages
+         Bai et al. 2022 (arXiv:2204.05862) — RLHF training stages
+  HOW: New entry: hf_id="BramVanroy/GEITje-7B-ultra-sft", same ALICE
+       resources as geitje. geitje entry updated to clarify it is chain STEP 3.
+
+CHANGE 24 — Updated MODEL_ORDER to 9 models (Dutch chain + original 7)
+  WHY: Consistent ordering across all results tables. Dutch chain grouped
+       together (mistral_base → geitje_sft → geitje) for clear visual narrative.
+  HOW: MODEL_ORDER = ["gpt-4o-mini", "mistral_base", "mistral",
+                      "qwen", "qwen14b", "geitje_sft", "geitje",
+                      "aya23", "mixtral"]
+
+CHANGE 25 — Added apples-vs-oranges warning comment to model_registry.py
+  WHY: Bram Vanroy explicitly warned that GEITje (2023) vs modern models is
+       not a fair capability comparison. This must be documented in the thesis.
+  HOW: Large comment block added at top of model_registry.py docstring
+       with exact citation: "Bram Vanroy, personal communication March 2026".
+
+CHANGE 26 — Updated DEFAULT_MODELS in run_all.py to 9 models
+  WHY: New models mistral_base and geitje_sft must be included in the
+       default pipeline run for the Dutch chain experiments.
+  HOW: DEFAULT_MODELS list updated to include mistral_base and geitje_sft.
+
+CHANGE 27 — Removed ALL old data CSV files from git
+  WHY: Old data files (supabase_responses.csv, synthetic_interviews.csv,
+       supbase_dutch_synthetic.csv, supbase_english_synthetic.csv) are
+       replaced by a fully controlled synthetic dataset generator (v3)
+       that creates 600 bilingual interviews (300 EN + 300 NL), 7 RAG
+       query types per interview. Controlled data ensures reproducibility
+       and avoids privacy concerns with real interview data.
+  HOW: git rm data/real/supabase_responses.csv
+       git rm data/synthetic/supbase_dutch_synthetic.csv
+       git rm data/synthetic/supbase_english_synthetic.csv
+       git rm data/synthetic/synthetic_interviews.csv
+       .gitignore updated: data/controlled/ excluded (generated, not tracked).
+       .gitkeep files added to preserve directory structure.
+
+NEW FILE: experiments/00_data_generation/generate_controlled_dataset_v3.py
+  PURPOSE: Generates the full controlled bilingual dataset.
+           600 interviews (300 EN + 300 NL), 14 turns each, 7 RAG queries.
+           Includes refusal_hallucination and role_drift query types.
+           Outputs: data/controlled/controlled_interviews.json,
+                    data/controlled/question_bank.json,
+                    data/controlled/student_profiles.json
+  HOW TO RUN: python experiments/00_data_generation/generate_controlled_dataset_v3.py
+
+NEW FILE: jobs/run_geitje_sft.sh
+  PURPOSE: SLURM job for GEITje-7B-ultra-sft (Dutch chain step 2) on ALICE.
+  RESOURCES: 12h wall time, 32GB RAM, 4 CPUs, 1 A100-80GB GPU.
+  NOTE: Run after run_geitje.sh and alongside it for Dutch chain comparison.

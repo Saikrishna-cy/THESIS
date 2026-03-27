@@ -8,3 +8,6 @@ venv/
 *.log
 *.tmp
 logs/
+# Generated controlled dataset — run STEP_1 generator script first, not committed to git
+data/controlled/
+results/

@@ -1,20 +1,45 @@
 """
-Model Registry — Central configuration for all 7 models.
+Model Registry — Central configuration for all 9 models.
 =========================================================
 Single source of truth for model IDs, API types, generation parameters,
 and ALICE HPC resource requirements. Import MODELS anywhere in the pipeline.
 
 CHANGES FROM v1 (Mistral-Small-24B era):
-  - "mistral"  : was mistral_api (Together.ai, 24B) → now HuggingFace Mistral-7B-Instruct-v0.3
-                 Why: Supervisor requires size parity with other 7-8B models.
-                 No API token needed — free HuggingFace download.
-                 Paper: Jiang et al. 2023 (arXiv:2310.06825) Table 1 p.2
-  - "qwen14b"  : NEW — Qwen2.5-14B-Instruct (scale ablation: does 14B < 7B hallucination?)
-                 Paper: Hui et al. 2024 (arXiv:2412.15115) Table 2 p.5
-  - "mixtral"  : NEW — Mixtral-8×7B-Instruct (MoE architecture test)
-                 Paper: Jiang et al. 2024 (arXiv:2401.04088)
-  - "llama"    : REMOVED — HuggingFace access not granted yet
-  - alice_gpu  : updated A100-40GB → A100-80GB (confirmed by cluster admin)
+  - "mistral"     : was mistral_api (Together.ai, 24B) → now HuggingFace Mistral-7B-Instruct-v0.3
+                    Why: Supervisor requires size parity with other 7-8B models.
+                    No API token needed — free HuggingFace download.
+                    Paper: Jiang et al. 2023 (arXiv:2310.06825) Table 1 p.2
+  - "qwen14b"     : NEW — Qwen2.5-14B-Instruct (scale ablation: does 14B < 7B hallucination?)
+                    Paper: Hui et al. 2024 (arXiv:2412.15115) Table 2 p.5
+  - "mixtral"     : NEW — Mixtral-8×7B-Instruct (MoE architecture test)
+                    Paper: Jiang et al. 2024 (arXiv:2401.04088)
+  - "llama"       : REMOVED — HuggingFace access not granted yet
+  - alice_gpu     : updated A100-40GB → A100-80GB (confirmed by cluster admin)
+  - "mistral_base": NEW v3 — Mistral-7B-v0.1 (raw base, NO instruction tuning)
+                    Dutch chain step 1 (Bram Vanroy recommendation)
+  - "geitje_sft"  : NEW v3 — GEITje-7B-ultra-sft (SFT checkpoint before DPO)
+                    Dutch chain step 2 (Bram Vanroy recommendation)
+
+─────────────────────────────────────────────────────────────────────────────
+NOTE (from Bram Vanroy, GEITje author, personal communication March 2026):
+  GEITje is based on Mistral-7B-v0.1 (released 2023). Comparing it to
+  modern models (Qwen2.5, Mixtral, GPT-4o-mini) is NOT a fair capability
+  comparison — the field has evolved significantly since 2023.
+  The correct use of GEITje in this thesis is as a DUTCH-LANGUAGE SPECIALIST
+  baseline, not as a capability-matched competitor.
+
+  The training-stage chain comparison is the PRIMARY NOVEL CONTRIBUTION:
+    mistral_base (Mistral-7B-v0.1, no fine-tuning)
+    → geitje_sft  (GEITje-7B-ultra-sft, Dutch SFT applied)
+    → geitje      (GEITje-7B-ultra, DPO applied on top of SFT)
+
+  Research question: "At which training stage do Dutch hallucinations emerge?
+  Was it already in pretraining, did SFT exacerbate it, or did DPO introduce it?"
+
+  Paper backing:
+    - Bai et al. 2022 (arXiv:2204.05862) — RLHF training stages
+    - Ouyang et al. 2022 (arXiv:2203.02155) — SFT vs RLHF comparison
+─────────────────────────────────────────────────────────────────────────────
 
 Usage:
   from experiments.model_registry import MODELS, get_model
@@ -148,14 +173,22 @@ MODELS: dict[str, dict] = {
         ),
     },
 
-    "geitje": {
-        "display_name":  "GEITje-7B-Ultra",
+    # ── Dutch training-stage chain (Bram Vanroy recommendation, March 2026) ──
+    # Chain: mistral_base → geitje_sft → geitje
+    # Reveals at which stage Dutch hallucinations are introduced.
+
+    "mistral_base": {
+        # Dutch chain step 1: RAW BASE MODEL — no instruction tuning, no Dutch fine-tuning.
+        # Used to establish a hallucination baseline BEFORE any fine-tuning.
+        # Bram Vanroy (GEITje author) specifically recommends this comparison.
+        # Paper: Jiang et al. 2023 (arXiv:2310.06825) — original Mistral architecture
+        "display_name":  "Mistral-7B-v0.1 (base)",
         "type":          "huggingface",
         "api_model_id":  None,
-        "hf_id":         "BramVanroy/GEITje-7B-ultra",
+        "hf_id":         "mistralai/Mistral-7B-v0.1",
         "size_params":   "7B",
-        "context_len":   4_096,
-        "language":      "Dutch (fine-tuned on Dutch data)",
+        "context_len":   32_768,
+        "language":      "multilingual (no instruction tuning)",
         "gen_params": {
             "temperature":        0.7,
             "max_new_tokens":     512,
@@ -170,9 +203,72 @@ MODELS: dict[str, dict] = {
         "alice_cpus":    4,
         "alice_time":    "12:00:00",
         "notes": (
-            "UNIQUE DUTCH CONTRIBUTION. Best Dutch-specific generative LLM publicly available. "
-            "Mistral-7B base fine-tuned on curated Dutch corpora by BramVanroy (Utrecht). "
-            "QLoRA fine-tuning target: rank=16 on Q/K/V/O layers. ~14GB VRAM in float16."
+            "DUTCH CHAIN STEP 1. Raw base model — NO instruction tuning, NO Dutch fine-tuning. "
+            "Establishes hallucination baseline before any fine-tuning. "
+            "Recommended by Bram Vanroy (GEITje author, personal communication March 2026). "
+            "~14GB VRAM in float16."
+        ),
+    },
+
+    "geitje_sft": {
+        # Dutch chain step 2: SFT CHECKPOINT — Dutch supervised fine-tuning applied,
+        # but NOT yet DPO. Tests whether SFT alone increases or decreases hallucination.
+        # Paper: Ouyang et al. 2022 (arXiv:2203.02155) — SFT stage of RLHF pipeline
+        "display_name":  "GEITje-7B-ultra-sft",
+        "type":          "huggingface",
+        "api_model_id":  None,
+        "hf_id":         "BramVanroy/GEITje-7B-ultra-sft",
+        "size_params":   "7B",
+        "context_len":   4_096,
+        "language":      "Dutch (SFT applied, before DPO)",
+        "gen_params": {
+            "temperature":        0.7,
+            "max_new_tokens":     512,
+            "top_p":              0.9,
+            "repetition_penalty": 1.1,
+            "do_sample":          True,
+        },
+        "torch_dtype":   "float16",
+        "load_in_4bit":  False,
+        "alice_gpu":     "A100-80GB",
+        "alice_ram_gb":  32,
+        "alice_cpus":    4,
+        "alice_time":    "12:00:00",
+        "notes": (
+            "DUTCH CHAIN STEP 2. SFT checkpoint BEFORE DPO alignment. "
+            "Tests whether supervised Dutch fine-tuning alone raises/lowers hallucination vs mistral_base. "
+            "Recommended by Bram Vanroy (GEITje author, personal communication March 2026). "
+            "~14GB VRAM in float16."
+        ),
+    },
+
+    "geitje": {
+        "display_name":  "GEITje-7B-Ultra (DPO)",
+        "type":          "huggingface",
+        "api_model_id":  None,
+        "hf_id":         "BramVanroy/GEITje-7B-ultra",
+        "size_params":   "7B",
+        "context_len":   4_096,
+        "language":      "Dutch (SFT + DPO fine-tuned)",
+        "gen_params": {
+            "temperature":        0.7,
+            "max_new_tokens":     512,
+            "top_p":              0.9,
+            "repetition_penalty": 1.1,
+            "do_sample":          True,
+        },
+        "torch_dtype":   "float16",
+        "load_in_4bit":  False,
+        "alice_gpu":     "A100-80GB",
+        "alice_ram_gb":  32,
+        "alice_cpus":    4,
+        "alice_time":    "12:00:00",
+        "notes": (
+            "DUTCH CHAIN STEP 3 (final DPO). Best Dutch-specific generative LLM publicly available. "
+            "Mistral-7B-v0.1 + Dutch SFT + DPO by BramVanroy (Utrecht University). "
+            "HIGHEST measured hallucination rate: 65.9% (2048/3108 responses). "
+            "QLoRA fine-tuning target: rank=16 on Q/K/V/O layers. ~14GB VRAM in float16. "
+            "Recommended by Bram Vanroy for training-stage chain comparison (March 2026)."
         ),
     },
 
@@ -242,13 +338,21 @@ MODELS: dict[str, dict] = {
 
 # ── Ordered model list for consistent reporting ────────────────────────────
 # Note: llama removed (no HuggingFace access yet)
-MODEL_ORDER = ["gpt-4o-mini", "mistral", "qwen", "qwen14b", "geitje", "aya23", "mixtral"]
+# Dutch training-stage chain: mistral_base → geitje_sft → geitje (Bram Vanroy, March 2026)
+MODEL_ORDER = [
+    "gpt-4o-mini",
+    "mistral_base", "mistral",          # Mistral: base → instruction-tuned
+    "qwen", "qwen14b",                  # Qwen: 7B → 14B scale ablation
+    "geitje_sft", "geitje",             # Dutch chain: SFT → DPO
+    "aya23", "mixtral",                 # Multilingual + MoE
+]
 
 # Convenience groups
 API_MODELS  = [k for k, v in MODELS.items() if v["type"] == "openai_api"]
 HF_MODELS   = [k for k, v in MODELS.items() if v["type"] == "huggingface"]
 HF_4BIT     = [k for k, v in MODELS.items() if v.get("load_in_4bit")]
-DUTCH_MODELS = ["geitje"]
+DUTCH_MODELS        = ["mistral_base", "geitje_sft", "geitje"]  # Dutch training-stage chain
+DUTCH_CHAIN         = ["mistral_base", "geitje_sft", "geitje"]  # alias for clarity
 MULTILINGUAL_WITH_DUTCH = ["aya23", "qwen", "qwen14b", "mistral", "gpt-4o-mini", "mixtral"]
 
 
@@ -271,7 +375,7 @@ def results_dir_for(model_name: str, results_base: str = "results") -> str:
 
 if __name__ == "__main__":
     print(f"\n{'='*80}")
-    print("MODEL REGISTRY — 7-Model Lineup (v2: Mistral-7B, +Qwen14B, +Mixtral, -Llama)")
+    print("MODEL REGISTRY — 9-Model Lineup (v3: +mistral_base, +geitje_sft, Dutch chain)")
     print(f"{'='*80}")
     print(f"{'Key':<12} {'Display Name':<30} {'Type':<16} {'Size':<18} {'4bit':<6} {'GPU'}")
     print("-" * 95)

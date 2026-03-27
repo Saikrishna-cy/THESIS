@@ -54,7 +54,13 @@ DEFAULT_DATA_SOURCES = [
     str(_BASE / "data" / "synthetic" / "supbase_dutch_synthetic.csv"),
 ]
 
-DEFAULT_MODELS   = ["gpt-4o-mini", "mistral", "qwen", "qwen14b", "geitje", "aya23", "mixtral"]
+DEFAULT_MODELS   = [
+    "gpt-4o-mini",
+    "mistral_base", "mistral",   # Mistral: base → instruction-tuned
+    "qwen", "qwen14b",           # Qwen: 7B → 14B scale ablation
+    "geitje_sft", "geitje",      # Dutch chain: SFT → DPO (Bram Vanroy, March 2026)
+    "aya23", "mixtral",          # Multilingual + MoE
+]
 DEFAULT_RESULTS  = str(_BASE / "results")
 
 
@@ -206,7 +212,7 @@ def main():
     parser.add_argument(
         "--models",
         default=",".join(DEFAULT_MODELS),
-        help="Comma-separated model names (default: gpt-4o-mini,mistral,qwen,qwen14b,geitje,aya23,mixtral)",
+        help="Comma-separated model names (default: all 9 models incl. Dutch chain mistral_base,geitje_sft,geitje)",
     )
     parser.add_argument(
         "--data-sources",
